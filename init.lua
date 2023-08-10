@@ -18,12 +18,23 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "tokyonight-night",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
-    virtual_text = true,
-    underline = true,
+    virtual_text = {
+      --source = "always", -- Or "if_many"
+      prefix = '●', -- Could be '■', '▎', 'x'
+    },
+    severity_sort = true,
+    virtual_lines = {
+      only_current_line = true,
+    },
+    float = {
+      source = "always", -- Or "if_many"
+    },
+    update_in_insert = false,
+    -- underline = true,
   },
 
   lsp = {
@@ -36,7 +47,8 @@ return {
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
+          "python",
+          "lua",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -68,18 +80,40 @@ return {
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
+-- Set up autocommands and custom highlight groups
   polish = function()
-    -- Set up custom filetypes
-    -- vim.filetype.add {
-    --   extension = {
-    --     foo = "fooscript",
-    --   },
-    --   filename = {
-    --     ["Foofile"] = "fooscript",
-    --   },
-    --   pattern = {
-    --     ["~/%.config/foo/.*"] = "fooscript",
-    --   },
-    -- }
+    -- Add additional commands for LaTeX and markdown files
+    vim.api.nvim_create_augroup("bufcheck", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "bufcheck",
+      pattern = "tex",
+      command = "nnoremap <leader>v <cmd>VimtexView<cr>",
+    })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "bufcheck",
+      pattern = "typst",
+      command = "nnoremap <leader>v <cmd>sil !pdf %:r.pdf<cr>",
+    })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "bufcheck",
+      pattern = "markdown",
+      command = "nnoremap <leader>v <cmd>MarkdownPreviewToggle<cr>",
+    })
+
+    -- Reset cursor after exiting
+    vim.api.nvim_create_augroup("change_cursor", { clear = true })
+    vim.api.nvim_create_autocmd("VimLeave", {
+      group = "change_cursor",
+      command = "set guicursor=a:ver90",
+    })
+
+    -- Set highlight groups for leap
+    vim.api.nvim_set_hl(0, "LeapLabelPrimary", { link = "GruvboxOrangeBold" })
+    vim.api.nvim_set_hl(0, "LeapLabelSecondary", { link = "GruvboxYellowBold" })
+
+    -- Fix mappings to special characters by defining them again explicitly
+    vim.keymap.set("n", "j", "/")
+    vim.keymap.set("v", "j", "/")
+    vim.keymap.set("n", "k", "'")
   end,
 }

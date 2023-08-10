@@ -2,10 +2,26 @@
 return {
   opt = {
     -- set to true or false etc.
-    relativenumber = true, -- sets vim.opt.relativenumber
+    autoindent=true,
+    autoread = true,
+    cindent = true,
+    cmdheight=0,
+    expandtab = true,
+    joinspaces = false,
+    list = true,
+    listchars = { tab = "> ", trail = "·"},
+    mouse = 'nv',
     number = true, -- sets vim.opt.number
-    spell = false, -- sets vim.opt.spell
+    relativenumber = true, -- sets vim.opt.relativenumber
+    shiftwidth= 2,
     signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+    smartindent=true,
+    softtabstop=2,
+    spell = false, -- sets vim.opt.spell
+    suffixes = "",
+    tabstop=2,
+    ttyfast = true,
+    wildmode = 'longest:full,full',
     wrap = false, -- sets vim.opt.wrap
   },
   g = {
