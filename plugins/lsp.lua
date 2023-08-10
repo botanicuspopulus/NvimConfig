@@ -1,4 +1,4 @@
 return {
-  { "jose-elias-alvarez/typescript.nvim", lazy = true },
+  { "jose-elias-alvarez/typescript.nvim" },
   { 'marilari88/twoslash-queries.nvim' },
 }

@@ -2,19 +2,13 @@ return {
   -- Add the community repository of plugin specifications
   "AstroNvim/astrocommunity",
 
+  { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   { import = "astrocommunity.bars-and-lines.vim-illuminate" },
+  { import = "astrocommunity.file-explorer.oil-nvim" },
+  { import = "astrocommunity.colorscheme.tokyonight-nvim", },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.code-runner.sniprun" },
-  { import = "astrocommunity.colorscheme.tokyonight-nvim",
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = 'transparent',
-        floats = 'transparent,'
-      }
-    }
-  },
   { import = "astrocommunity.completion.cmp-cmdline" },
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.completion.codeium-vim" },
@@ -34,7 +28,6 @@ return {
   { import = "astrocommunity.editing-support.telescope-undo-nvim" },
   { import = "astrocommunity.editing-support.yanky-nvim" },
   { import = "astrocommunity.editing-support.treesj" },
-  { import = "astrocommunity.file-explorer.oil-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.git.git-blame-nvim" },
   { import = "astrocommunity.git.neogit" },
@@ -45,18 +38,6 @@ return {
   { import = "astrocommunity.lsp.lsp-signature-nvim"},
   { import = "astrocommunity.markdown-and-latex.glow-nvim" },
   { import = "astrocommunity.markdown-and-latex.peek-nvim" },
-  { import = "astrocommunity.motion.hop-nvim" },
-  { import = "astrocommunity.motion.flash-nvim",
-    event = 'VeryLazy',
-    opts = {},
-    keys = {
-      { '<leader>Fs', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
-      { '<leader>Ft', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
-      { '<leader>Fr', mode = 'o', function() require('flash').remote() end, desc = 'Remote Flash' },
-      { '<leader<FR', mode = { 'o', 'x' }, function() require('flash').treesitter_search() end, desc = 'Flash Treesitter Search' },
-      { '<C-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Toggle Flash Search' },
-    }
-  },
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.marks-nvim" },
   { import = "astrocommunity.pack.bash" },
@@ -87,13 +68,4 @@ return {
   { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
   { import = "astrocommunity.terminal-integration.vim-tpipeline" },
   { import = "astrocommunity.utility.telescope-live-grep-args-nvim" },
-  { import = "astrocommunity.utility.noice-nvim" },
-
-  {
-    "noice.nvim",
-    event = 'VeryLazy',
-    presets = { inc_rename = true },
-    popupmenu = { enabled = false },
-
-  }
 }
