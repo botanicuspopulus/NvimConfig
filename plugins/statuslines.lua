@@ -28,7 +28,8 @@ return {
               name = "heirline_lsp",
               callback = function()
                 vim.defer_fn(function()
-                  vim.cmd.LspInfo() end, 100)
+                  vim.cmd.LspInfo() 
+                end, 100)
               end,
             },
           },

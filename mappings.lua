@@ -22,7 +22,8 @@ return {
       function()
         require("astronvim.utils.status").heirline.buffer_picker(
           function(bufnr)
-            require("astronvim.utils.buffer").close(bufnr)
+            require("astronvim.utils.buffer").close(bufer)
+
           end
         )
       end,
@@ -31,11 +32,10 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["M-h"] = { "<cmd>TmuxNavigateLeft<CR>", desc = "TmuxNavigateLeft", silent = true, noremap = true },
+    ["M-j"] = { "<cmd>TmuxNavigateDown<CR>", desc = "TmuxNavigateDown", silent = true, noremap = true },
+    ["M-k"] = { "<cmd>TmuxNavigateUp<CR>", desc = "TmuxNavigateUp", silent = true, noremap = true },
+    ["M-l"] = { "<cmd>TmuxNavigateRight<CR>", desc = "TmuxNavigateRight", silent = true, noremap = true },
   },
-  t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
-  },
+  t = { },
 }
