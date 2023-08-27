@@ -5,7 +5,7 @@ return {
     autoindent=true,
     autoread = true,
     cindent = true,
-    cmdheight=0,
+    cmdheight=1,
     expandtab = true,
     joinspaces = false,
     list = true,
