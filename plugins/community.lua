@@ -35,7 +35,6 @@ return {
   { import = "astrocommunity.indent.indent-tools-nvim" },
   { import = "astrocommunity.lsp.inc-rename-nvim" },
   { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
-  { import = "astrocommunity.lsp.lsp-signature-nvim"},
   { import = "astrocommunity.markdown-and-latex.glow-nvim" },
   { import = "astrocommunity.markdown-and-latex.peek-nvim" },
   { import = "astrocommunity.motion.nvim-surround" },

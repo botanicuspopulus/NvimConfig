@@ -1,28 +1,33 @@
--- set vim options here (vim.<first_key>.<second_key> = value)
 return {
   opt = {
-    -- set to true or false etc.
-    autoindent=true,
     autoread = true,
+    autoindent=true,
     cindent = true,
-    cmdheight=1,
+    smartindent = true,
     expandtab = true,
+    smarttab = true,
+    confirm = false,
+    cmdheight = 0,
     joinspaces = false,
+    conceallevel = 3,
     list = true,
     listchars = { tab = "> ", trail = "·"},
+    matchtime = 2,
     mouse = 'nv',
-    number = true, -- sets vim.opt.number
-    relativenumber = true, -- sets vim.opt.relativenumber
-    shiftwidth= 2,
-    signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-    smartindent=true,
-    softtabstop=2,
-    spell = false, -- sets vim.opt.spell
+    number = true,
+    relativenumber = true,
+    signcolumn = "auto",
+    inccommand = "nosplit",
+    autochdir = true,
+    showtabline = 0,
+    shiftwidth = 2,
+    softtabstop = 2,
+    tabstop = 2,
+    spell = false,
     suffixes = "",
-    tabstop=2,
     ttyfast = true,
     wildmode = 'longest:full,full',
-    wrap = false, -- sets vim.opt.wrap
+    wrap = false,
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

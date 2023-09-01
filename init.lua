@@ -4,7 +4,7 @@ return {
     remote = "origin", -- remote to use
     channel = "nightly", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-    branch = "v4", -- branch name (NIGHTLY ONLY)
+    branch = "nightly", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
     pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
     skip_prompts = false, -- skip prompts about breaking changes
@@ -47,13 +47,16 @@ return {
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
+          "c",
+          "cpp",
+          "javascript",
           "python",
           "lua",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
-        -- "lua_ls",
+        "lua_ls",
       },
       timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
@@ -72,7 +75,29 @@ return {
     performance = {
       rtp = {
         -- customize default disabled vim plugins
-        disabled_plugins = { "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin" },
+        disabled_plugins = {
+          "2html_plugin",
+          "getscript",
+          "getscriptPlugin",
+          "logipat",
+          "netrw",
+          "netrwFileHandlers",
+          "loaded_remote_plugins",
+          "loaded_tutor_mode_plugin",
+          "netrwSettings",
+          "rrhelper",
+          "spellfile_plugin",
+          "tohtml",
+          "gzip",
+          "matchit",
+          "tutor",
+          "rplugin",
+          "zipPlugin",
+          "netrwPlugin",
+          "tar",
+          "tarPlugin",
+          "matchparen"
+        },
       },
     },
   },
