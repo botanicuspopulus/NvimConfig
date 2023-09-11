@@ -1,6 +1,5 @@
 return {
   { 'famiu/bufdelete.nvim', enabled = false },
-
   {
     'mhinz/vim-sayonara',
     cmd = 'Sayonara',
