@@ -5,6 +5,7 @@ return {
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.bars-and-lines.vim-illuminate" },
   { import = "astrocommunity.file-explorer.oil-nvim" },
+  { import = "astrocommunity.color.ccc-nvim" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim", },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.code-runner.sniprun" },
