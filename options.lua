@@ -20,14 +20,15 @@ return {
     inccommand = "nosplit",
     autochdir = true,
     showtabline = 0,
-    shiftwidth = 2,
-    softtabstop = 2,
-    tabstop = 2,
+    shiftwidth = 4,
+    softtabstop = 4,
+    tabstop = 4,
     spell = false,
     suffixes = "",
     ttyfast = true,
     wildmode = 'longest:full,full',
     wrap = false,
+    clipboard = 'unnamedplus',
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader
