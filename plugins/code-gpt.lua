@@ -187,4 +187,16 @@ return {
             { "<leader>ccv", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle Vsplit" },
         },
     },
+    {
+        "zirbenaum/copilot.lua",
+        suggestion = {
+            auto_trigger = true,
+            keymap = {
+                accept = "<C-g>",
+                reject = "<C-S-g>",
+                next = "<C-n>",
+                prev = "<C-p>",
+            },
+        },
+    },
 }

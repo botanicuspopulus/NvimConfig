@@ -16,9 +16,8 @@ return {
                 multi_window = false,
                 -- search direction
                 forward = true,
-                wrap = true,
-
-                mode = 'exact',
+                wrap = false,
+                mode = function(str) return "\\<" .. str end,
                 -- acts like incsearch
                 incremental = true,
                 exclude = {
@@ -47,23 +46,38 @@ return {
                 search = {
                     enabled = true,
                     highlight = { backdrop = false },
-                    jump = { history = true, register = true, nohlsearch = true },
+                    jump = {
+                        history = true,
+                        register = true,
+                        nohlsearch = true,
+                    },
                     search = {},
                 },
                 char = {
                     enabled = false,
+                    jump_labels = true,
+                    multi_line = false,
                     keys = { 'f', 'F', 't', 'T', ',' },
                     search = { wrap = false },
-                    highlight = { backdrop = true },
+                    highlight = { backdrop = true, groups = { label = "", backdrop = "" }},
                     jump = { register = false },
+                },
+                treesitter = {
+                    labels = "abcdefghijklmnopqrstuvwxyz",
+                    jump = { pos = "range" },
+                    highlight = {
+                        label = { before = true, after = true,style = "inline" },
+                        backdrop = false,
+                        matches = false,
+                    },
                 },
             },
         },
         keys = {
             '/',
             {
-                "s",
-                mode = { "n" },
+                "Ss",
+                mode = { "n", "x" },
                 function()
                     require("flash").jump {
                         search = {
@@ -74,19 +88,19 @@ return {
                 desc = "Flash",
             },
             {
-                "S",
+                "St",
                 mode = { "n", "o", "x" },
                 function() require("flash").jump() end,
                 desc = "Flash Treesitter",
             },
             {
-                "r",
+                "Sr",
                 mode = "o",
                 function() require("flash").remote() end,
                 desc = "Remote Flash",
             },
             {
-                "R",
+                "SR",
                 mode = { "o", "x" },
                 function() require("flash").treesitter_search() end,
                 desc = "Treesitter Search",
