@@ -4,7 +4,7 @@ local pickers_to_load = "alt_font emoji nerd_font nerd_font_v3 symbols"
 
 utils.set_mappings {
   n = {
-    [prefix] = { name = "Nerd Font Icon Picker" },
+    [prefix] = { name = " Nerd Font Icon Picker" },
     [prefix .. "i"] = { "<cmd>IconPickerNormal " .. pickers_to_load .. "<CR>", desc = "Normal Mode" },
     [prefix .. "y"] = { "<cmd>IconPickerYank<CR>", desc = "Yank Selected Icon to Buffer" },
   },

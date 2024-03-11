@@ -22,7 +22,7 @@ return {
       function()
         require("astronvim.utils.status").heirline.buffer_picker(
           function(bufnr)
-            require("astronvim.utils.buffer").close(bufer)
+            require("astronvim.utils.buffer").close(bufnr)
 
           end
         )

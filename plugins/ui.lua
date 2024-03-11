@@ -57,13 +57,6 @@ return {
     },
   },
   {
-    "j-hui/fidget.nvim",
-    lazy = false,
-    tag = "legacy",
-    event = 'LspAttach',
-    opts = {},
-  },
-  {
     "anuvyklack/fold-preview.nvim",
     lazy = false,
     dependencies = "anuvyklack/keymap-amend.nvim",

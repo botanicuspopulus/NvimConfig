@@ -1,6 +1,6 @@
 return {
   {
-    'paopal/telescope-git-diffs.nvim',
+    'paopaol/telescope-git-diffs.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim'
