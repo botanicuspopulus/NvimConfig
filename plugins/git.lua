@@ -1,5 +1,5 @@
 return {
-  require('user.wrappers').ensure_treesitter_parsers({
+  require('wrappers').ensure_treesitter_parsers({
     "gitcommit",
     "gitattributes",
     "git_rebase",
@@ -15,7 +15,7 @@ return {
     event = 'User AstroGitFile',
     config = function()
       local actions = require('diffview.actions')
-      local utils = require('astronvim.utils')
+      local utils = require('astrocore')
 
       local prefix = '<leader>D'
 
