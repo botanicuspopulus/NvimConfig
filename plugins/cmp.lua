@@ -61,7 +61,6 @@ return {
 
         opts.sources = cmp.config.sources(
             {
-                { name = 'copilot', priority = 1100, max_itme_count = 3 },
                 { name = 'nvim_lsp', priority = 1000 },
                 { name = 'luasnip', priority = 750, max_item_count = 5 },
                 { name = 'buffer', priority = 500, keyword_length = 5, max_itme_count = 10, option = {
