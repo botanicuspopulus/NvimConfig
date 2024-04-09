@@ -51,12 +51,39 @@ return {
             prompts = prompts,
             auto_follow_cursor = false, -- Don't follow the cursor after getting response
             mappings = {
-                close = "q", -- Close chat
-                reset = "<C-l>", -- Clear the chat buffer
-                complete = "<Tab>", -- Change to insert mode and press tab to get the completion
-                submit_prompt = "<CR>", -- Submit question to Copilot Chat
-                accept_diff = "<C-a>", -- Accept the diff
-                show_diff = "<C-s>", -- Show the diff
+                close = {
+                    normal = "q", -- Close chat
+                    insert = "<C-c>",
+                },
+                reset = {
+                    normal = "<C-l>", -- Clear the chat buffer
+                    insert = "<C-l>",
+                },
+                complete = {
+                    detail = 'Use @<Tab> or /<Tab> for options.',
+                    insert = "<Tab>", -- Change to insert mode and press tab to get the completion
+                },
+                submit_prompt = {
+                    normal = "<CR>", -- Submit question to Copilot Chat
+                    insert = "<C-m>",
+                },
+                accept_diff = {
+                    normal = "<C-y>", -- Accept the diff
+                    insert = "<C-y>",
+                },
+                yank_diff = {
+                    normal = "gy",
+                },
+                show_diff = {
+                    normal = "gd", -- Show the diff
+                },
+                show_system_prompt = {
+                    normal = "gp",
+                },
+                show_user_selection = {
+                    normal = "gs",
+                },
+
             },
         },
         config = function(_, opts)
@@ -188,7 +215,7 @@ return {
         },
     },
     {
-        "zirbenaum/copilot.lua",
+        "zbirenbaum/copilot.lua",
         suggestion = {
             auto_trigger = true,
             keymap = {
