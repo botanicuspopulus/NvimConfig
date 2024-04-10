@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
     {
         "nvim-treesitter/nvim-treesitter",
@@ -26,6 +27,7 @@ return {
                 "jsdoc",
                 "jq",
                 "jsdoc",
+                "jsonc",
                 "latex",
                 "lua",
                 "luadoc",
