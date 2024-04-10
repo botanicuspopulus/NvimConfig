@@ -24,17 +24,6 @@ return {
     { "max397574/better-escape.nvim", enabled = false },
     { "NMAC427/guess-indent.nvim", enabled = false },
     {
-        "folke/which-key.nvim",
-        config = function(plugin, opts)
-            require "plugins.configs.which-key"(plugin, opts) -- include the default astronvim config that calls the setup call
-            -- Add bindings which show up as group name
-            local wk = require "which-key"
-            wk.register({
-                b = { name = "Buffer" },
-            }, { mode = "n", prefix = "<leader>" })
-        end,
-    },
-    {
         "rcarriga/nvim-notify",
         opts = {
             top_down = false,
