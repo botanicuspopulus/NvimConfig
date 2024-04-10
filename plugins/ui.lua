@@ -44,11 +44,11 @@ return {
             auto_fold = false,
             auto_jump = { "lsp_definitions" },
             signs = {
-                error = " ",
-                warning = "⚠ ",
-                hint = "󰌵 ",
-                information = " ",
-                other = "﫠",
+                error = "",
+                warning = "",
+                hint = "",
+                information = "",
+                other = "",
             }
         },
         keys = {
