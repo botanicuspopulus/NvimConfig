@@ -5,7 +5,7 @@ return {
         config = function(plugin, opts)
             local ls = require 'luasnip'
             require('astronvim.plugins.configs.luasnip')(plugin, opts)
-            require('luasnip/loaders/from_vscode').lazy_load( { paths = { './lua/user/snippets' } } )
+            require('luasnip/loaders/from_vscode').lazy_load( { paths = { './lua/snippets' } } )
             ls.config.set_config {
                 -- This tells LuaSnip to remember to keep around the last snippet.
                 -- You can jump back into it even if you move outside of the selection
