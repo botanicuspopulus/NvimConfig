@@ -21,6 +21,11 @@ return {
     diagnostics = {
       virtual_text = true,
       underline = true,
+      update_in_insert = false,
+    },
+    rooter = {
+      autochdir = true,
+      notify = false,
     },
     -- vim options can be configured here
     options = {
@@ -34,8 +39,6 @@ return {
         cmdheight = 1,
         joinspaces = false,
         conceallevel = 3,
-        lazyredraw = false,
-        ttyfast = true,
         list = true,
         listchars = {
             tab = "» ",
@@ -61,13 +64,6 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
-        autoformat_enabled = false,
-        cmp_enabled = true,
-        autopairs_enabled = true,
-        diagnostics_mode = 3,
-        icons_enabled = true,
-        ui_notifications_enabled = true,
-        resession_enabled = false,
       },
     },
     -- Mappings can be configured through AstroCore as well.
