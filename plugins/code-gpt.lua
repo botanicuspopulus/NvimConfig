@@ -206,11 +206,13 @@ return {
     "zbirenbaum/copilot.lua",
     opts = {
       suggestion = {
-        auto_trigger = false,
-        debounce = 100,
+        auto_trigger = true,
+        debounce = 15,
         keymap = {
-          accept = "<C-g>",
-          dismiss = "<C-S-g>",
+          accept = "<C-e>",
+          dismiss = "<C-S-e>",
+          accept_word = "<C-f>",
+          accept_line = "<M-l>",
           next = "<M-]>",
           prev = "<M-[>",
         },
