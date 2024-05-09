@@ -12,9 +12,6 @@ return {
         "lua_ls",
         "clangd",
         "awk_ls",
-        "ansiblels",
-        "asm_lsp",
-        "autotools_ls",
         "bashls",
         "clangd",
         "cmake",
@@ -26,7 +23,7 @@ return {
         "dockerls",
         "docker_compose_language_service",
         "efm",
-        "eslint",
+        "eslint_d",
         "hdl_checker",
         "html",
         "jsonls",
@@ -50,7 +47,6 @@ return {
         "verible",
         "taplo",
         "vtsls",
-        "vimls",
         "lemminx",
         "yamlls"
         -- add more arguments for adding more language servers
@@ -64,15 +60,13 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "prettier",
+        "prettier_d",
         "stylua",
         "beautysh",
         "jsonlint",
         "luacheck",
         "mypy",
-        "pydocstyle",
         "pylint",
-        "sql_formatter",
         "yamlfmt",
         "yamllint",
         -- add more arguments for adding more null-ls sources

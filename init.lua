@@ -31,7 +31,12 @@ return {
             only_current_line = true,
         },
         float = {
+            focusable = false,
             source = "always", -- Or "if_many"
+            style = "minimal",
+            border = "rounded",
+            header = "",
+            prefix = "",
         },
         update_in_insert = false,
         -- underline = true,
@@ -46,7 +51,7 @@ return {
         formatting = {
             -- control auto formatting on save
             format_on_save = {
-                enabled = true, -- enable or disable format on save globally
+                enabled = false, -- enable or disable format on save globally
                 allow_filetypes = { -- enable format on save for specified filetypes only
                     -- "go",
                 },
