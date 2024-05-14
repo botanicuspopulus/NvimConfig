@@ -4,6 +4,7 @@ return {
 
     { import = "astrocommunity.bars-and-lines.vim-illuminate" },
     { import = "astrocommunity.colorscheme.tokyonight-nvim", },
+    { import = "astrocommunity.colorscheme.tokyodark-nvim", },
     { import = "astrocommunity.code-runner.overseer-nvim" },
     { import = "astrocommunity.code-runner.sniprun" },
     { import = "astrocommunity.code-runner.executor-nvim" },
@@ -14,7 +15,8 @@ return {
     { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
     { import = "astrocommunity.debugging.telescope-dap-nvim" },
     { import = "astrocommunity.diagnostics.trouble-nvim" },
-    { import = "astrocommunity.diagnostics.lsp_lines-nvim"},
+    { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
+    { import = "astrocommunity.diagnostics.error-lens-nvim" },
     { import = "astrocommunity.editing-support.chatgpt-nvim" },
     {
         "ChatGPT.nvim",
@@ -99,11 +101,14 @@ return {
     { import = "astrocommunity.editing-support.telescope-undo-nvim" },
     { import = "astrocommunity.editing-support.yanky-nvim" },
     { import = "astrocommunity.editing-support.treesj" },
+    { import = "astrocommunity.editing-support.nvim-regexplainer" },
     { import = "astrocommunity.git.diffview-nvim" },
     { import = "astrocommunity.git.git-blame-nvim" },
     { import = "astrocommunity.git.neogit" },
     { import = "astrocommunity.indent.indent-tools-nvim" },
     { import = "astrocommunity.lsp.inc-rename-nvim" },
+    { import = "astrocommunity.lsp.actions-preview-nvim" },
+    { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
     { import = "astrocommunity.markdown-and-latex.glow-nvim" },
     { import = "astrocommunity.markdown-and-latex.peek-nvim" },
     { import = "astrocommunity.motion.nvim-surround" },
@@ -114,6 +119,7 @@ return {
     { import = "astrocommunity.pack.cmake" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.docker" },
+    { import = "astrocommunity.pack.godot" },
     { import = "astrocommunity.pack.html-css" },
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.lua" },
@@ -121,6 +127,7 @@ return {
     { import = "astrocommunity.pack.php" },
     { import = "astrocommunity.pack.ps1" },
     { import = "astrocommunity.pack.python" },
+    { import = "astrocommunity.pack.python-ruff" },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.svelte"},
     { import = "astrocommunity.pack.tailwindcss" },
@@ -168,84 +175,6 @@ return {
     { import = "astrocommunity.terminal-integration.vim-tpipeline" },
     { import = "astrocommunity.utility.telescope-live-grep-args-nvim" },
     { import = "astrocommunity.utility.noice-nvim" },
-    {
-        "noice.nvim",
-        popupmenu = {
-            backend = "cmp",
-        },
-        lsp = {
-            progess = {
-                enabled = false
-            },
-            override = {
-                ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-                ['vim.lsp.util.stylize_markdown'] = true,
-                ['cmp.entry.get_documentation'] = true,
-            },
-        },
-        messages = {
-            view_search = false
-        },
-        routes = {
-            {
-                filter = {
-                    event = "msg_show",
-                    any = {
-                        { find = '%d+L, %d+B' },
-                        { find = '^%d+ changes?; after #%d+' },
-                        { find = '^%d+ changes?; before #%d+' },
-                        { find = '^Hunk %d+ of %d+$' },
-                        { find = '^%d+ fewer lines;?' },
-                        { find = '^%d+ more lines?;?' },
-                        { find = '^%d+ line less;?' },
-                        { find = '^Already at newest change' },
-                        { kind = 'wmsg' },
-                        { kind = 'emsg', find = 'E486' },
-                        { kind = 'quickfix' },
-                    },
-                },
-                view = 'mini',
-            },
-            {
-                filter = {
-                    event = "msg_show",
-                    any = {
-                        { find = 'N^%d+ lines .ed %d+ times?$' },
-                        { find = '^%d+ lines yanked$' },
-                        { kind = 'emsg', find = 'E490' },
-                        { kind = 'search_count' },
-                    }
-                },
-                opts = { skip = true },
-            },
-            {
-                filter = {
-                    event = 'notify',
-                    any = {
-                        { find = '^No code action available$' },
-                        { find = '^No information available$' },
-                    },
-                },
-                view = 'mini',
-            }
-        },
-        presets = {
-            bottom_search = false,
-            command_palette = true,
-            long_message_to_split = true,
-            lsp_doc_border = true,
-            inc_rename = false,
-        },
-    },
     { import = "astrocommunity.utility.nvim-toggler" },
-    {
-        "nvim-toggler",
-        keys = {
-            {
-                "<leader>i",
-                mode = { "n", "v" },
-                desc = "Toggler"
-            }
-        }
-    }
+    { import = "astrocommunity.file-explorer.oil-nvim" },
 }
