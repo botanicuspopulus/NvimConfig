@@ -1,0 +1,7 @@
+\.git
+\.gitignore
+\.gitmodules
+\.github
+\.neoconf.json
+\.stylua.toml
+\.luacheckrc
