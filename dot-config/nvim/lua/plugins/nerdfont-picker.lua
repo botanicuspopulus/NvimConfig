@@ -1,6 +1,6 @@
 local utils = require "astrocore"
 local prefix = "<leader>N"
-local pickers_to_load = "alt_font emoji nerd_font nerd_font_v3 symbols"
+local pickers_to_load = "alt_font emoji nerd_font_v3 symbols"
 
 utils.set_mappings {
   n = {
