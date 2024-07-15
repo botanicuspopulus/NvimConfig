@@ -45,7 +45,7 @@ return {
                 autoindent = true,
                 cindent = true,
                 smartindent = true,
-                expandtab = true,
+                expandtab = false,
                 confirm = false,
                 cmdheight = 1,
                 joinspaces = false,

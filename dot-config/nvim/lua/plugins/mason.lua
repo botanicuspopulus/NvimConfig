@@ -99,7 +99,6 @@ return {
           null_ls.builtins.formatting.d2_fmt,
           null_ls.builtins.formatting.djhtml,
           null_ls.builtins.formatting.djlint,
-          null_ls.builtins.formatting.prettier_d,
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.shfmt,
           null_ls.builtins.formatting.tidy,
