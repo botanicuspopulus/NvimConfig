@@ -1,4 +1,3 @@
----@diagnostic disable: mixed_table
 return {
     {
         "folke/trouble.nvim",
@@ -7,7 +6,6 @@ return {
             position = "bottom",
             height = 10,
             width = 50,
-            icons = true,
             mode = "workspace_diagnostics",
             severity = nil,
             fold_open = "",
@@ -56,32 +54,5 @@ return {
             { "<leader>ut", "<cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Toggle trouble" },
             { "<leader>fd", "<cmd>TroubleToggle document_diagnostics<CR>", desc = "Toggle trouble for document" },
         },
-    },
-    {
-        "anuvyklack/fold-preview.nvim",
-        lazy = false,
-        dependencies = "anuvyklack/keymap-amend.nvim",
-        opts = {},
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        opts = {
-            exclude = {
-                filetypes = {
-                    'checkhealth',
-                    'git',
-                    'gitcommit',
-                    'lspinfo',
-                    'man',
-                    'mason',
-                    'notify',
-                },
-            },
-        },
-    },
-    {
-        "anuvyklack/pretty-fold.nvim",
-        lazy = false,
-        opts = {},
     },
 }
