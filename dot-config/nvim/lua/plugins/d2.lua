@@ -1,3 +1,3 @@
 return {
-  { 'terrastruct/d2-vim' }
+  	{ 'terrastruct/d2-vim' }
 }
