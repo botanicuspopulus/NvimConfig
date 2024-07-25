@@ -8,41 +8,11 @@ return {
 			{ "nvim-lua/plenary.nvim" },
 		},
 		opts = {
-			debug = true,
 			mappings = {
-				close = {
-					normal = "q", -- Close chat
-					insert = "<C-c>",
-				},
-				reset = {
-					normal = "<C-l>", -- Clear the chat buffer
-					insert = "<C-l>",
-				},
-				complete = {
-					detail = 'Use @<Tab> or /<Tab> for options.',
-					insert = "<Tab>", -- Change to insert mode and press tab to get the completion
-				},
 				submit_prompt = {
 					normal = "<CR>", -- Submit question to Copilot Chat
 					insert = "<C-m>",
 				},
-				accept_diff = {
-					normal = "<C-y>", -- Accept the diff
-					insert = "<C-y>",
-				},
-				yank_diff = {
-					normal = "gy",
-				},
-				show_diff = {
-					normal = "gd", -- Show the diff
-				},
-				show_system_prompt = {
-					normal = "gp",
-				},
-				show_user_selection = {
-					normal = "gs",
-				},
-
 			},
 		},
 		config = function(_, opts)
@@ -98,129 +68,54 @@ return {
 		},
 		event = "VeryLazy",
 		keys = {
-			-- Show help actions with telescope
+			{
+				"<leader>ccp",
+				function()
+					local input = vim.fn.input("Quick Chat: ")
+					if input ~= "" then
+						require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+					end
+				end,
+				desc = "CopilotChat - Quick Chat",
+			},
 			{
 				"<leader>cch",
 				function()
-					local actions =  require("CopilotChat.actions")
-					require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+					local actions = require("CopilotChat.actions")
+					require("CopilotChat.integrations.telescope").pick(action.help_actions())
 				end,
-				desc = "CopilotChat - Help actions",
+				desc = "CopilotChat - Help Actions",
 			},
-			-- Show prompts actions with telescope
 			{
 				"<leader>ccp",
 				function()
-					local actions =  require("CopilotChat.actions")
+					local actions = require("CopilotChat.acions")
 					require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
 				end,
-				desc = "CopilotChat - Prompt actions",
+				desc = "CopilotChat - Prompt Actions",
 			},
 			{
-				"<leader>ccp",
-				":lua require('CopilotChat.code_actions').show_prompt_actions({ selection = require('CopilotChat.select').visual })<CR>",
-				mode = "x",
-				desc = "CopilotChat - Prompt actions",
+				"<leader>cc|",
+				"<cmd>CopilotChatVsplitToggle<CR>",
+				desc = "CopilotChat - Toggle Vsplit",
 			},
-			{
-				"<leader>ccp",
-				":lua require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions())<CR>",
-				mode = "x",
-				desc = "CopilotChat - Prompt actions",
-			},
-			-- Code related commands
-			{
-				"<leader>cce",
-				"<cmd>CopilotChatExplain<cr>",
-				desc = "CopilotChat - Explain code"
-			},
-			{
-				"<leader>cct", "<cmd>CopilotChatTests<cr>",
-				desc = "CopilotChat - Generate tests"
-			},
-			{
-				"<leader>ccr",
-				"<cmd>CopilotChatReview<cr>",
-				desc = "CopilotChat - Review code"
-			},
-			{
-				"<leader>ccR",
-				"<cmd>CopilotChatRefactor<cr>",
-				desc = "CopilotChat - Refactor code"
-			},
-			{
-				"<leader>ccn",
-				"<cmd>CopilotChatBetterNamings<cr>",
-				desc = "CopilotChat - Better Naming"
-			},
-			-- Chat with Copilot in visual mode
 			{
 				"<leader>ccv",
 				":CopilotChatVisual",
 				mode = "x",
-				desc = "CopilotChat - Open in vertical split",
+				desc = "CopilotChat - Open in vertical split"
 			},
 			{
-				"<leader>ccx",
-				":CopilotChatInline<cr>",
-				mode = "x",
-				desc = "CopilotChat - Inline chat",
+				"<leader>ccc",
+				":CopilotChatInPlace<CR>",
+				mode = { "n", "x" },
+				desc = "CopilotChat - Run in-place code",
 			},
-			-- Custom input for CopilotChat
-			{
-				"<leader>cci",
-				function()
-					local input = vim.fn.input("Ask Copilot: ")
-					if input ~= "" then
-						vim.cmd("CopilotChat " .. input)
-					end
-				end,
-				desc = "CopilotChat - Ask input",
-			},
-			-- Generate commit message based on the git diff
-			{
-				"<leader>ccm",
-				"<cmd>CopilotChatCommit<cr>",
-				desc = "CopilotChat - Generate commit message for all changes",
-			},
-			{
-				"<leader>ccM",
-				"<cmd>CopilotChatCommitStaged<cr>",
-				desc = "CopilotChat - Generate commit message for staged changes",
-			},
-			-- Quick chat with Copilot
-			{
-				"<leader>ccq",
-				function()
-					local input = vim.fn.input("Quick Chat: ")
-					if input ~= "" then
-						vim.cmd("CopilotChatBuffer " .. input)
-					end
-				end,
-				desc = "CopilotChat - Quick chat",
-			},
-			-- Debug
-			{
-				"<leader>ccd",
-				"<cmd>CopilotChatDebugInfo<cr>",
-				desc = "CopilotChat - Debug Info"
-			},
-			-- Fix the issue with diagnostic
 			{
 				"<leader>ccf",
-				"<cmd>CopilotChatFixDiagnostic<cr>",
-				desc = "CopilotChat - Fix Diagnostic"
-			},
-			-- Clear buffer and chat history
-			{
-				"<leader>ccl",
-				"<cmd>CopilotChatReset<cr>",
-				desc = "CopilotChat - Clear buffer and chat history" },
-			-- Toggle Copilot Chat Vsplit
-			{
-				"<leader>ccv",
-				"<cmd>CopilotChatToggle<cr>",
-				desc = "CopilotChat - Toggle Vsplit" },
+				"<cmd>CopilotChatFixDiagnostic<CR>",
+				desc = "CopilotChat - Fix diagnostic",
+			}
 		},
 	},
 	{
