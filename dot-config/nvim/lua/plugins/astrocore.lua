@@ -32,7 +32,7 @@ return {
 			update_in_insert = false,
 		},
 		rooter = {
-			autochdir = true,
+			autochdir = false,
 			notify = false,
 		},
 		-- vim options can be configured here
