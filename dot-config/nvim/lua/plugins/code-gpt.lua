@@ -82,21 +82,21 @@ return {
 				"<leader>cch",
 				function()
 					local actions = require("CopilotChat.actions")
-					require("CopilotChat.integrations.telescope").pick(action.help_actions())
+					require("CopilotChat.integrations.telescope").pick(actions.help_actions())
 				end,
 				desc = "CopilotChat - Help Actions",
 			},
 			{
 				"<leader>ccp",
 				function()
-					local actions = require("CopilotChat.acions")
+					local actions = require("CopilotChat.actions")
 					require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
 				end,
 				desc = "CopilotChat - Prompt Actions",
 			},
 			{
 				"<leader>cc|",
-				"<cmd>CopilotChatVsplitToggle<CR>",
+				"<cmd>CopilotChatToggle<CR>",
 				desc = "CopilotChat - Toggle Vsplit",
 			},
 			{
@@ -107,7 +107,7 @@ return {
 			},
 			{
 				"<leader>ccc",
-				":CopilotChatInPlace<CR>",
+				":CopilotChatInline<CR>",
 				mode = { "n", "x" },
 				desc = "CopilotChat - Run in-place code",
 			},
