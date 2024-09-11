@@ -17,7 +17,7 @@ return {
     { import = "astrocommunity.completion.cmp-nvim-lua" },
     { import = "astrocommunity.completion.cmp-under-comparator" },
     { import = "astrocommunity.completion.copilot-lua-cmp" },
-    { import = "astrocommunity.debugging.nvim-bqf" },
+    { import = "astrocommunity.quickfix.nvim-bqf" },
     { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
     { import = "astrocommunity.debugging.telescope-dap-nvim" },
     { import = "astrocommunity.diagnostics.trouble-nvim" },
