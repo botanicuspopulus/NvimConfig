@@ -11,6 +11,7 @@ return {
 	keys = { ':', '/', '?' },
 	dependencies = {
 		'hrsh7th/cmp-buffer',
+		'chrisgrieser/cmp-nerdfont',
 		'hrsh7th/cmp-emoji',
 		'hrsh7th/cmp-nvim-lsp-signature-help',
 		'hrsh7th/cmp-nvim-lsp',
@@ -51,6 +52,7 @@ return {
 						cmp_tabnine = "[TabNine]",
 						copilot = "[Copilot]",
 						dictionary = "[Dictionary]",
+						nerdfont = "[NerdFont]",
 						emoji = "[Emoji]",
 						greek = "[Greek]",
 						latex_symbols = "[Latex]",
@@ -94,8 +96,9 @@ return {
 					{ name = 'nvim_lsp_document_symbol', priority = 150 },
 					{ name = 'nvim_lsp_signature_help', priority = 140 },
 					{ name = 'nvim_lua', priority = 130 },
-					{ name = 'calc', priority = 120 },
+					{ name = 'nerdfont', priority = 120 },
 					{ name = 'greek', priority = 110 },
+					{ name = 'calc', priority = 120 },
 				},
 				{
 					name = "spell",
