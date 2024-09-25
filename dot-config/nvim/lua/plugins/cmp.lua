@@ -11,8 +11,6 @@ return {
 	keys = { ':', '/', '?' },
 	dependencies = {
 		'hrsh7th/cmp-buffer',
-		'chrisgrieser/cmp-nerdfont',
-		'hrsh7th/cmp-emoji',
 		'hrsh7th/cmp-nvim-lsp-signature-help',
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-path',
@@ -23,7 +21,6 @@ return {
 		'saadparwaiz1/cmp_luasnip',
 		'rafamadriz/friendly-snippets',
 		'tamago324/cmp-zsh',
-		'andersevenrud/cmp-tmux',
 		'nat-418/cmp-color-names.nvim',
 		'amarakon/nvim-cmp-fonts',
 		'roginfarrer/cmp-css-variables',
