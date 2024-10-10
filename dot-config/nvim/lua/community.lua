@@ -92,6 +92,7 @@ return {
     { import = "astrocommunity.programming-language-support.web-tools-nvim" },
     { import = "astrocommunity.search.nvim-spectre" },
     { import = "astrocommunity.register.nvim-neoclip-lua" },
+    { import = "astrocommunity.remote-development.remote-sshfs-nvim" },
     { import = "astrocommunity.syntax.hlargs-nvim" },
     { import = "astrocommunity.syntax.vim-cool" },
     { import = "astrocommunity.syntax.vim-easy-align" },
