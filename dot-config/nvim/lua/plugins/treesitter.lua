@@ -106,20 +106,20 @@ return {
     end,
   },
   {
-    'windwp/nvim-ts-autotag',
+    "windwp/nvim-ts-autotag",
     opts = {
       filetypes = {
-        'html',
-        'javascript',
-        'javascriptreact',
-        'jsx',
-        'svelte',
-        'tsx',
-        'typescript',
-        'typescriptreact',
-        'vue',
-        'xml',
-      }
-    }
-  }
+        "html",
+        "javascript",
+        "javascriptreact",
+        "jsx",
+        "svelte",
+        "tsx",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "xml",
+      },
+    },
+  },
 }

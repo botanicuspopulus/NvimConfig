@@ -13,9 +13,10 @@ return {
     -- Configuration table of features provided by AstroLSP
     features = {
       autoformat = true, -- Enable or disable auto formatting on start
-      codelens = true, -- Enable/disable codelens refresh on start
-      inlay_hints = false, -- Enable/disable inlay hints on start
+      codelens = false, -- Enable/disable codelens refresh on start
+      inlay_hints = true, -- Enable/disable inlay hints on start
       semantic_tokens = true, -- Enable/disable semantic token highlighting
+      signature_help = true, -- Enable/disable signature help on start
     },
     -- Customize lsp formatting options
     formatting = {
@@ -45,7 +46,6 @@ return {
     -- Customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      clangd = { capabilities = { offsetEncoding = "utf-8" } },
       harper_ls = {
         settings = {
           ["harper-ls"] = {
@@ -131,7 +131,7 @@ return {
           callback = function(args)
             local filter = { bufnr = args.buf }
             if vim.lsp.inlay_hint.is_enabled(filter) then
-              vim.lsp.inly_hint.enable(false, filter)
+              vim.lsp.inlay_hint.enable(false, filter)
               vim.api.nvim_create_autocmd("InsertLeave", {
                 buffer = args.buf,
                 once = true,
