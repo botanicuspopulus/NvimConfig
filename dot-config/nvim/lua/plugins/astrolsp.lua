@@ -104,13 +104,11 @@ return {
           }
         }
       },
-      ruff_lsp = {
-        init_options = {
-          settings = {
-            lineLength = max_line_length,
-          }
+      neocmakelsp = {
+        cmake = {
+          enble_external_cmake_lint = true,
         }
-      },
+      }
     },
     -- Customize how language servers are attached
     handlers = {
