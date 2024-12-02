@@ -26,7 +26,6 @@ return {
     'roginfarrer/cmp-css-variables',
     'saadparwaiz1/cmp_luasnip',
     'tamago324/cmp-zsh',
-    'zbirenbaum/copilot-cmp',
   },
   config = function()
     local luasnip = require("luasnip")
@@ -40,28 +39,26 @@ return {
         format = require("lspkind").cmp_format {
           mode = "symbol",
           maxwidth = 50,
+          ellipsis_char = '...',
           menu = {
-            buffer = "[Buffer]",
-            calc = "[Calc]",
-            cmdline = "[Cmdline]",
-            cmdline_history = "[History]",
-            doxygen = "[Doxygen]",
+            calc = "󰃬",
+            cmdline = "",
+            cmdline_history = " 󰋚",
+            doxygen = "󰈙",
             luasnip = "[LuaSnip]",
-            cmp_tabnine = "[TabNine]",
-            copilot = "[Copilot]",
-            dictionary = "[Dictionary]",
+            dictionary = "",
             nerdfont = "[NerdFont]",
-            emoji = "[Emoji]",
-            greek = "[Greek]",
+            emoji = "󰱨",
+            greek = "󱌮",
             latex_symbols = "[Latex]",
             nvim_lsp = "[LSP]",
-            nvim_lsp_signature_help = "[Signature]",
+            nvim_lsp_signature_help = "󰷻",
             nvim_lua = "[NeovimLua]",
             omni = "[Omni]",
-            path = "[Path]",
+            path = "󰴠",
             rg = "[Rg]",
-            spell = "[Spell]",
-            treesitter = "[Treesitter]",
+            spell = "󰓆",
+            treesitter = "",
           },
         },
       },
@@ -74,7 +71,6 @@ return {
 
       sources = cmp.config.sources(
         {
-          { name = "copilot", priority = 1100, max_item_count = 3 },
           { name = 'nvim_lsp', priority = 1000 },
           { name = 'nvim_lsp_signature_help', priority = 500 },
           { name = 'nvim_lsp_document_symbol', priority = 400 },
@@ -128,28 +124,7 @@ return {
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
         },
-        ["<Tab>"] = cmp.mapping(
-          function(fallback)
-            if cmp.visible() and has_words_before() then
-              cmp.select_next_item({ behaviour = cmp.SelectBehavior.Select })
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.jump(1)
-            else
-              fallback()
-            end
-          end, {"i", "s" }
-        ),
-        ["<S-Tab>"] = cmp.mapping(
-          function()
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.jump(-1)
-            end
-          end, { "i", "s" }
-        ),
       }),
-
       window = {
         completion = cmp.config.window.bordered({
           winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
@@ -180,7 +155,6 @@ return {
           { name = "git", priority = 110 },
         },
         {
-          { name = "copilot", priority = 110},
           { name = "nvim_lsp", priority = 100 },
           { name = "path", priority = 100 },
           { name = "luasnip", priority = 80 },
@@ -195,6 +169,7 @@ return {
           { name = "dictionary", keyword_length = 2, priority = 10 },
         }),
     })
+
 
     -- configure `cmp-cmdline` as described in their repo: https://github.com/hrsh7th/cmp-cmdline#setup
     cmp.setup.cmdline("/", {
