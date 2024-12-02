@@ -2,6 +2,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      "LiadOz/nvim-dap-repl-highlights",
+    },
     opts = {
       endwise = { enable = true },
       indent = { enable = true },
@@ -89,7 +92,6 @@ return {
         "toml",
         "tsv",
         "typescript",
-        "typst",
         "verilog",
         "vhdl",
         "vim",

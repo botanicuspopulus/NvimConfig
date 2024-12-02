@@ -83,8 +83,6 @@ return {
         "systemdlint",
         "tailwindcss-language-server",
         "taplo",
-        "typst-lsp",
-        "typstfmt",
         "tree-sitter-cli",
         "verible",
         "vim-language-server",
