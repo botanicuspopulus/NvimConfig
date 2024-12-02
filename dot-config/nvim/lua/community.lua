@@ -99,31 +99,6 @@ return {
     { import = "astrocommunity.search.nvim-hlslens" },
     { import = "astrocommunity.search.sad-nvim" },
     { import = "astrocommunity.split-and-window.windows-nvim" },
-    {
-        "windows.nvim",
-        keys = {
-            {
-                "<C-w>z",
-                "<cmd>WindowsMaximize<CR>",
-                desc="Maximize",
-            },
-            {
-                "<C-w>_",
-                "<cmd>WindowsMaximizeVertically<CR>",
-                desc="Maximize vertically",
-            },
-            {
-                "<C-w>|",
-                "<cmd>WindowsMaximizeHorizontally<CR>",
-                desc="Maximize horizontally",
-            },
-            {
-                "<C-w>=",
-                "<cmd>WindowsEqualize<CR>",
-                desc="Equalize",
-            }
-        }
-    },
     { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
     { import = "astrocommunity.terminal-integration.vim-tpipeline" },
     { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },
