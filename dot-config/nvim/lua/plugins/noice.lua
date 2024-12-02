@@ -38,7 +38,7 @@ return {
       },
     },
     lsp = {
-      progess = {
+      progress = {
         enabled = false,
       },
       hover = {
