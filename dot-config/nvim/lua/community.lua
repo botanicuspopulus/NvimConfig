@@ -23,7 +23,6 @@ return {
     { import = "astrocommunity.debugging.telescope-dap-nvim" },
     { import = "astrocommunity.diagnostics.trouble-nvim" },
     { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
-    { import = "astrocommunity.editing-support.copilotchat-nvim" },
     { import = "astrocommunity.editing-support.dial-nvim" },
     { import = "astrocommunity.editing-support.hypersonic-nvim" },
     { import = "astrocommunity.editing-support.multicursors-nvim" },
