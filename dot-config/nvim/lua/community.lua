@@ -89,7 +89,6 @@ return {
     { import = "astrocommunity.programming-language-support.csv-vim" },
     { import = "astrocommunity.programming-language-support.dooku-nvim" },
     { import = "astrocommunity.programming-language-support.nvim-jqx" },
-    { import = "astrocommunity.programming-language-support.web-tools-nvim" },
     { import = "astrocommunity.search.nvim-spectre" },
     { import = "astrocommunity.register.nvim-neoclip-lua" },
     { import = "astrocommunity.remote-development.remote-sshfs-nvim" },
