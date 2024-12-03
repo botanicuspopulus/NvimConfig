@@ -90,9 +90,6 @@ return {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
       },
-      experimental = {
-        ghost_text = true,
-      },
       preselect = cmp.PreselectMode.None,
 
       mapping = cmp.mapping.preset.insert({
@@ -186,9 +183,7 @@ return {
         { name = "nvim_lsp_document_symbol" },
         { name = "buffer" }
       }),
-      mapping = cmp.mapping.preset.insert({
-        ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace ,select = false }),
-      }),
+      mapping = cmp.mapping.preset.cmdline()
     })
 
     cmp.setup.cmdline(":", {
@@ -197,9 +192,7 @@ return {
         { { name = "cmdline",  keyword_length = 3, option = { ignore_cmds = { "Man", "!", "w", "q" }}}, },
         { { name = "cmdline_history", keyword_length = 5 } }
       ),
-      mapping = cmp.mapping.preset.insert({
-        ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace ,select = false }),
-      }),
+      mapping = cmp.mapping.preset.cmdline()
     })
   end,
 }
