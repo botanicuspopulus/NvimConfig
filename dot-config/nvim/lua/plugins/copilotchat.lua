@@ -28,7 +28,7 @@ return {
       event = "User AstroFile",
       opts = {
         suggestion = {
-          enabled = false,
+          enabled = true,
         },
         panel = {
           enabled = false,
