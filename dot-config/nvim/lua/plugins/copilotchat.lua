@@ -1,6 +1,5 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
-  model = "claude-3.5-sonnet",
   cmd = {
     "CopilotChat",
     "CopilotChatOpen",
@@ -28,7 +27,7 @@ return {
       event = "User AstroFile",
       opts = {
         suggestion = {
-          enabled = true,
+          enabled = false,
         },
         panel = {
           enabled = false,
@@ -140,6 +139,7 @@ return {
     { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
   },
   opts = {
+    model = "claude-3.7-sonnet",
     window = {
       layout = "float",
       width = 74, -- absolute width in columns
