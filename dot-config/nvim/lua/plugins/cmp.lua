@@ -169,16 +169,7 @@ return {
 
 
     -- configure `cmp-cmdline` as described in their repo: https://github.com/hrsh7th/cmp-cmdline#setup
-    cmp.setup.cmdline("/", {
-      enabled = function()
-        -- Set of commands where cmp will be disabled
-        local disabled = { IncRename = true }
-        -- Get first word of cmdline
-        local cmd = vim.fn.getcmdline():match("%S+")
-        -- Return true if cmd isn't disabled
-        -- else call/return cmp.close(), which returns false
-        return not disabled[cmd] or cmp.close()
-      end,
+    cmp.setup.cmdline({"/", "?"}, {
       sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol" },
         { name = "buffer" }
