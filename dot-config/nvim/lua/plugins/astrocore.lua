@@ -66,6 +66,7 @@ return {
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
         wrap = false, -- sets vim.opt.wrap
+        colorcolumn = '80',
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
