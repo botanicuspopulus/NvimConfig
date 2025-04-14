@@ -1,6 +1,79 @@
+local cmp = require "cmp"
+local luasnip = require "luasnip"
+
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+end
+
+local function tab_complete(direction)
+  return function(fallback)
+    if cmp.visible() then
+      if #cmp.get_entries() == 1 then
+        cmp.confirm { select = true }
+      else
+        if direction > 0 then
+          cmp.select_next_item()
+        else
+          cmp.select_prev_item()
+        end
+      end
+    elseif has_words_before() then
+      cmp.complete()
+      if #cmp.get_entries() == 1 then cmp.confirm { select = true } end
+    elseif luasnip.locally_jumpable(direction) then
+      luasnip.jump(direction)
+    else
+      fallback()
+    end
+  end
+end
+
+local common_sources = {
+  { name = "nvim_lsp", priority = 1000 },
+  { name = "path", priority = 250 },
+  { name = "nvim_lua", priority = 130 },
+  { name = "buffer", keyword_length = 3, priority = 130 },
+  { name = "nerdfont", priority = 120 },
+  { name = "greek", priority = 110 },
+  { name = "calc", priority = 100 },
+  { name = "luasnip", priority = 80 },
+  { name = "treesitter", priority = 50 },
+}
+
+local markdown_sources = {
+  { name = "rg", priority = 70 },
+  { name = "emoji", insert = true, priority = 60 },
+  { name = "spell", priority = 40 },
+  { name = "dictionary", keyword_length = 2, priority = 10 },
+}
+
+local git_sources = {
+  { name = "git", priority = 110 },
+}
+
+local cmdline_source = {
+  { name = "path" },
+  { name = "cmdline", keyword_length = 3, option = { ignore_cmds = { "Man", "!", "w", "q" } } },
+  { name = "cmdline_history", keyword_length = 5 },
+}
+
+local cmdline_search_source = {
+  { name = "nvim_lsp_document_symbol" },
+  { name = "buffer" },
+}
+
+local function cmdline_tab_complete(_)
+  if cmp.visible() then
+    if #cmp.get_entries() == 1 then
+      cmp.confirm { select = true }
+    else
+      cmp.select_next_item()
+    end
+  else
+    cmp.complete()
+    if #cmp.get_entries() == 1 then cmp.confirm { select = true } end
+  end
 end
 
 return {
@@ -32,8 +105,6 @@ return {
     "tamago324/cmp-zsh",
   },
   config = function()
-    local luasnip = require "luasnip"
-    local cmp = require "cmp"
     cmp.setup {
       ---@diagnostic disable: missing-fields
       formatting = {
@@ -68,7 +139,7 @@ return {
       },
 
       completion = {
-        completeopt = 'menu,menuone,noinsert',
+        completeopt = "menu,menuone,noinsert",
         autocomplete = false,
       },
 
@@ -76,19 +147,7 @@ return {
         expand = function(args) luasnip.lsp_expand(args.body) end,
       },
 
-      sources = cmp.config.sources({
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "nvim_lsp_signature_help", priority = 500 },
-        { name = "nvim_lsp_document_symbol", priority = 400 },
-        { name = "path", priority = 250 },
-      }, {
-        { name = "nvim_lua", priority = 130 },
-      }, {
-        { name = "buffer", keyword_lenth = 3, priority = 130 },
-        { name = "nerdfont", priority = 120 },
-        { name = "greek", priority = 110 },
-        { name = "calc", priority = 100 },
-      }),
+      sources = cmp.config.sources(common_sources),
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
@@ -96,49 +155,10 @@ return {
       preselect = cmp.PreselectMode.None,
 
       mapping = cmp.mapping.preset.insert {
-        ["<C-n>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.locally_jumpable(1) then
-            luasnip.jump(1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            if #cmp.get_entries() == 1 then
-              cmp.confirm { select = true }
-            else
-              cmp.select_next_item()
-            end
-          elseif has_words_before() then
-            cmp.complete()
-            if #cmp.get_entries() == 1 then cmp.confirm({ select = true }) end
-          elseif luasnip.locally_jumpable(1) then
-            luasnip.jump(1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<C-p>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
+        ["<C-n>"] = cmp.mapping(tab_complete(1)),
+        ["<Tab>"] = cmp.mapping(tab_complete(1)),
+        ["<C-p>"] = cmp.mapping(tab_complete(-1)),
+        ["<S-Tab>"] = cmp.mapping(tab_complete(-1)),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-u>"] = cmp.mapping.select_prev_item { count = 5 },
@@ -183,69 +203,18 @@ return {
 
     -- run cmp setup
     cmp.setup.filetype({ "gitcommit", "markdown" }, {
-      sources = cmp.config.sources({
-        { name = "git", priority = 110 },
-      }, {
-        { name = "nvim_lsp", priority = 100 },
-        { name = "path", priority = 100 },
-        { name = "luasnip", priority = 80 },
-        { name = "rg", priority = 70 },
-        { name = "emoji", insert = true, priority = 60 },
-      }, {
-        { name = "buffer", priority = 50 },
-        { name = "spell", priority = 40 },
-        { name = "calc", priority = 50 },
-        { name = "treesitter", priority = 50 },
-        { name = "dictionary", keyword_length = 2, priority = 10 },
-      }),
+      sources = cmp.config.sources(git_sources, markdown_sources),
     })
 
     -- configure `cmp-cmdline` as described in their repo: https://github.com/hrsh7th/cmp-cmdline#setup
     cmp.setup.cmdline({ "/", "?" }, {
-      sources = cmp.config.sources {
-        { name = "nvim_lsp_document_symbol" },
-        { name = "buffer" },
-      },
-      mapping = cmp.mapping.preset.cmdline {
-        ["<Tab>"] = {
-          c = function(_)
-            if cmp.visible() then
-              if #cmp.get_entries() == 1 then
-                cmp.confirm { select = true }
-              else
-                cmp.select_next_item()
-              end
-            else
-              cmp.complete()
-              if #cmp.get_entries() == 1 then cmp.confirm({ select = true }) end
-            end
-          end,
-        },
-      },
+      sources = cmp.config.sources(cmdline_search_source),
+      mapping = cmp.mapping.preset.cmdline(),
     })
 
     cmp.setup.cmdline(":", {
-      sources = cmp.config.sources(
-        { { name = "path" } },
-        { { name = "cmdline", keyword_length = 3, option = { ignore_cmds = { "Man", "!", "w", "q" } } } },
-        { { name = "cmdline_history", keyword_length = 5 } }
-      ),
-      mapping = cmp.mapping.preset.cmdline {
-        ["<Tab>"] = {
-          c = function(_)
-            if cmp.visible() then
-              if #cmp.get_entries() == 1 then
-                cmp.confirm { select = true }
-              else
-                cmp.select_next_item()
-              end
-            else
-              cmp.complete()
-              if #cmp.get_entries() == 1 then cmp.confirm({ select = true }) end
-            end
-          end,
-        },
-      },
+      sources = cmp.config.sources(cmdline_source),
+      mapping = cmp.mapping.preset.cmdline(),
     })
   end,
 }

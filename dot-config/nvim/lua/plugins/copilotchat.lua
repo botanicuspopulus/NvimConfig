@@ -22,7 +22,8 @@ return {
     "CopilotChatCommitStaged",
   },
   dependencies = {
-    { "zbirenbaum/copilot.lua",
+    {
+      "zbirenbaum/copilot.lua",
       cmd = "Copilot",
       event = "User AstroFile",
       opts = {
@@ -31,16 +32,17 @@ return {
         },
         panel = {
           enabled = false,
-        }
-      }
+        },
+      },
     },
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope.nvim" },
-    { "MeanderingProgrammer/render-markdown.nvim",
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
       config = function()
-        require("render-markdown").setup({
-          file_types = { "markdown", "copilot-chat" }
-        })
+        require("render-markdown").setup {
+          file_types = { "markdown", "copilot-chat" },
+        }
       end,
     },
     {
@@ -149,6 +151,6 @@ return {
     },
     show_help = false,
     highlight_headers = false,
-    error_header = "> [!ERROR] Error"
+    error_header = "> [!ERROR] Error",
   },
 }
