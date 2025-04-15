@@ -54,19 +54,19 @@ return {
           precedes = "⟨",
         },
         matchtime = 2,
-        mouse = 'nv',
-        signcolumn = 'auto',
-        inccommand = 'nosplit',
+        mouse = "nv",
+        signcolumn = "auto",
+        inccommand = "nosplit",
         shiftwidth = 2,
         tabstop = 2,
         scrolloff = 5,
         sidescrolloff = 10,
-        wildmode = 'longest:full,full',
+        wildmode = "longest:full,full",
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
         wrap = false, -- sets vim.opt.wrap
-        colorcolumn = '80',
+        colorcolumn = "80",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
