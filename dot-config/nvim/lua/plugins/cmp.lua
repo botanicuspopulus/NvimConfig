@@ -63,19 +63,6 @@ local cmdline_search_source = {
   { name = "buffer" },
 }
 
-local function cmdline_tab_complete(_)
-  if cmp.visible() then
-    if #cmp.get_entries() == 1 then
-      cmp.confirm { select = true }
-    else
-      cmp.select_next_item()
-    end
-  else
-    cmp.complete()
-    if #cmp.get_entries() == 1 then cmp.confirm { select = true } end
-  end
-end
-
 return {
   "hrsh7th/nvim-cmp",
   keys = { ":", "/", "?" },
