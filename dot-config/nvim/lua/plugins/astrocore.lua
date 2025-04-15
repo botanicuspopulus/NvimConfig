@@ -11,7 +11,7 @@ return {
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
       diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      highlighturl = true, -- highlight URLs at start
+      highlighturl = false, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
@@ -66,7 +66,6 @@ return {
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
         wrap = false, -- sets vim.opt.wrap
-        colorcolumn = "80",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)

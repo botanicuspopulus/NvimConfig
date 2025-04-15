@@ -13,7 +13,7 @@ return {
       codelens = false,
       inlay_hints = true,
       semantic_tokens = true,
-      signature_help = false,
+      signature_help = true,
     },
     formatting = {
       format_on_save = {
@@ -22,7 +22,7 @@ return {
         ignore_filetypes = {},
       },
       disabled = { "lua_ls" },
-      timeout_ms = 1000,
+      timeout_ms = 2000,
     },
     servers = {},
     ---@diagnostic disable: missing-fields
@@ -50,7 +50,7 @@ return {
         },
       },
       lsp_document_highlight = {
-        cond = { "textDocument/documentHighlight" },
+        cond = "textDocument/documentHighlight",
         events = {
           {
             event = { "CursorHold", "CursorHoldI" },
@@ -70,7 +70,7 @@ return {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
       },
     },
-    on_attach = function(client, bufnr)
+    on_attach = function(client, _)
       if client.name == "pylsp" then client.server_capabilities.semanticTokensProvider = nil end
     end,
   },

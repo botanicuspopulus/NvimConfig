@@ -1,19 +1,7 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   dependencies = {
-    {
-      "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      event = "User AstroFile",
-      opts = {
-        suggestion = {
-          enabled = false,
-        },
-        panel = {
-          enabled = false,
-        },
-      },
-    },
+    { "zbirenbaum/copilot.lua" },
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope.nvim" },
     {
