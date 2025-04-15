@@ -17,7 +17,7 @@ return {
     },
     formatting = {
       format_on_save = {
-        enabled = false,
+        enabled = true,
         allow_filetypes = {},
         ignore_filetypes = {},
       },
