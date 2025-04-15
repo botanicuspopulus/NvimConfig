@@ -1,0 +1,4 @@
+std = "lua"
+
+[lint]
+mixed_table = "allow"
