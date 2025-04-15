@@ -1,14 +1,22 @@
 return {
   "folke/which-key.nvim",
   config = function(_, opts)
-    local wk = require("which-key")
+    local wk = require "which-key"
     opts = {
       preset = "modern",
       plugins = {
-        spelling  = {
-          enabled = true,
-          suggestions = 20,
-        },
+        marks = true,
+        registers = true,
+        spelling = { enabled = true, suggestions = 20 },
+      },
+      presets = {
+        operators = true,
+        motions = true,
+        text_objects = true,
+        windows = true,
+        nav = true,
+        z = true,
+        g = true,
       },
       icons = {
         mappings = false,
@@ -21,15 +29,16 @@ return {
       layout = {
         height = { min = 4, max = 25 },
         width = { min = 20, max = 50 },
-        spacing = 4,
+        spacing = 3,
         align = "center",
       },
       win = {
-        no_overlap = true,
+        border = "rounded",
         padding = { 2, 2, 2, 2 },
       },
-      show_help = true,
+      triggers = { "<leader>", "<localleader>" },
+      disable = { ft = { "help", "dashboard" }, bt = { "terminal" } },
     }
     wk.setup(opts)
-  end
+  end,
 }
