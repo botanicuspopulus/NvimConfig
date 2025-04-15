@@ -98,13 +98,9 @@ return {
   opts = {
     model = "claude-3.7-sonnet",
     window = {
-      layout = "float",
+      layout = "vertical",
       border = "rounded",
-      width = 0.6,
-    },
-    sticky = {
-      ">#files",
-      ">@lsp",
+      width = 0.3,
     },
     prompts = {
       LspRefactor = {
