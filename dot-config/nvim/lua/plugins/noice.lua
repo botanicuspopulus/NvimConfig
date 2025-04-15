@@ -47,7 +47,7 @@ return {
           cond = function(message)
             local title = message.opts and message.opts.title or ""
             return title == "mason"
-          end
+          end,
         },
         view = "mini",
       },
@@ -70,7 +70,7 @@ return {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
-      }
+      },
     },
     messages = { view_search = false },
     presets = {
@@ -79,6 +79,6 @@ return {
       long_message_to_split = true,
       inc_rename = true,
       lsp_doc_border = true,
-    }
+    },
   },
 }
