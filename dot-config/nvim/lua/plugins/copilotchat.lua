@@ -1,26 +1,5 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
-  cmd = {
-    "CopilotChat",
-    "CopilotChatOpen",
-    "CopilotChatClose",
-    "CopilotChatToggle",
-    "CopilotChatStop",
-    "CopilotChatReset",
-    "CopilotChatSave",
-    "CopilotChatLoad",
-    "CopilotChatDebugInfo",
-    "CopilotChatModels",
-    "CopilotChatAgents",
-    "CopilotChatExplain",
-    "CopilotChatReview",
-    "CopilotChatFix",
-    "CopilotChatOptimize",
-    "CopilotChatDocs",
-    "CopilotChatFixDiagnostic",
-    "CopilotChatCommit",
-    "CopilotChatCommitStaged",
-  },
   dependencies = {
     {
       "zbirenbaum/copilot.lua",
@@ -88,32 +67,20 @@ return {
         }
 
         -- Helper function to create mappings
-        local function create_mapping(action_type, selection_type)
+        local function select_action(selection_type)
           return function()
-            require("CopilotChat.integrations.telescope").pick(require("CopilotChat.actions")[action_type] {
-              selection = require("CopilotChat.select")[selection_type],
-            })
+            require("CopilotChat").select_prompt { selection = require("CopilotChat.select")[selection_type] }
           end
         end
 
         maps.n[prefix .. "p"] = {
-          create_mapping("prompt_actions", "buffer"),
+          select_action "buffer",
           desc = "Prompt actions",
         }
 
         maps.v[prefix .. "p"] = {
-          create_mapping("prompt_actions", "visual"),
+          select_action "visual",
           desc = "Prompt actions",
-        }
-
-        maps.n[prefix .. "d"] = {
-          create_mapping("help_actions", "buffer"),
-          desc = "LSP Diagnostics actions",
-        }
-
-        maps.v[prefix .. "d"] = {
-          create_mapping("help_actions", "visual"),
-          desc = "LSP Diagnostics actions",
         }
 
         -- Quick Chat function
@@ -144,13 +111,23 @@ return {
     model = "claude-3.7-sonnet",
     window = {
       layout = "float",
-      width = 74, -- absolute width in columns
-      height = vim.o.lines - 4, -- absolute height in rows, subtract for command line and status line
-      row = 1, -- row position of the window, starting from the top
-      col = vim.o.columns - 74, -- column position of the window, aligned to the right
+      border = "rounded",
+      width = 0.6,
     },
-    show_help = false,
-    highlight_headers = false,
-    error_header = "> [!ERROR] Error",
+    sticky = {
+      ">#files",
+      ">@lsp",
+    },
+    prompts = {
+      LspRefactor = {
+        prompt = "Refactor this function considering its usage",
+        context = {
+          provider = function()
+            local params = vim.lsp.util.make_position_params(0, "utf-8")
+            return vim.lsp.buf_request_sync(0, "textDocument/references", params)
+          end,
+        },
+      },
+    },
   },
 }
