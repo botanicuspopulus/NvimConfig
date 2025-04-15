@@ -185,7 +185,7 @@ return {
           end
         end,
         s = cmp.mapping.confirm { select = true },
-        c = cmp.mapping.confirm(),
+        c = cmp.mapping.confirm { select = true },
       },
       ["<C-CR>"] = cmp.mapping {
         i = cmp.mapping.abort(),
@@ -221,6 +221,10 @@ return {
         { name = "path" },
         { name = "buffer" },
       },
+    })
+
+    cmp.setup.filetype("neo-tree-popup", {
+      enabled = false,
     })
 
     cmp.setup.cmdline("/", {
