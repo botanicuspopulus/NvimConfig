@@ -5,10 +5,8 @@ return {
   { import = "astrocommunity.bars-and-lines.vim-illuminate" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.code-runner.compiler-nvim" },
-  { import = "astrocommunity.code-runner.executor-nvim" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.code-runner.sniprun" },
-  { import = "astrocommunity.code-runner.toggletasks-nvim" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
   { import = "astrocommunity.debugging.telescope-dap-nvim" },
@@ -55,6 +53,5 @@ return {
   { import = "astrocommunity.terminal-integration.vim-tpipeline" },
   { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
-  { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.utility.telescope-live-grep-args-nvim" },
 }
