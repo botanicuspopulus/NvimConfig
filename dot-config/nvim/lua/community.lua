@@ -3,6 +3,7 @@ return {
   "AstroNvim/astrocommunity",
 
   { import = "astrocommunity.bars-and-lines.vim-illuminate" },
+  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.code-runner.compiler-nvim" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
