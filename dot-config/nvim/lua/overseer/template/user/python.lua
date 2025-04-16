@@ -2,6 +2,8 @@ return {
   generator = function(_, cb)
     local tasks = {}
 
+    local base_priority = 50
+
     if vim.bo.filetype == "python" then
       if vim.fn.filereadable "pyproject.toml" == 1 and vim.fn.executable "uv" == 1 then
         table.insert(tasks, {
@@ -13,7 +15,7 @@ return {
               components = { "default", "on_output_quickfix" },
             }
           end,
-          priority = 50,
+          priority = base_priority - 15,
         })
 
         table.insert(tasks, {
@@ -41,6 +43,7 @@ return {
               components = { "deafult", "on_output_quickfix" },
             }
           end,
+          priority = base_priority - 10,
         })
       end
 
@@ -54,7 +57,7 @@ return {
               components = { "default", "on_output_quickfix" },
             }
           end,
-          priority = 50,
+          priority = base_priority - 5,
         })
 
         table.insert(tasks, {
@@ -66,7 +69,7 @@ return {
               components = { "default", "on_output_quickfix" },
             }
           end,
-          priority = 50,
+          priority = base_priority,
         })
       end
     end
