@@ -2,6 +2,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "User AstroFile",
     dependencies = {
       "LiadOz/nvim-dap-repl-highlights",
     },

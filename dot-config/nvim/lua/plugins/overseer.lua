@@ -1,6 +1,6 @@
 return {
   "stevearc/overseer.nvim",
-  event = "VeryLazy",
+  event = "User AstroFile",
   opts = {
     templates = { "builtin", "user" },
     components = {

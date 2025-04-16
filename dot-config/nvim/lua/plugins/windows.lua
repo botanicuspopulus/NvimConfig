@@ -1,5 +1,6 @@
 return {
   "anuvyklack/windows.nvim",
+  lazy = true,
   keys = {
     {
       "<C-w>z",
