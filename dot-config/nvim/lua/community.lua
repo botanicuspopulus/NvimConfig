@@ -48,7 +48,6 @@ return {
   { import = "astrocommunity.search.nvim-hlslens" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
-  { import = "astrocommunity.terminal-integration.vim-tpipeline" },
   { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
 }
