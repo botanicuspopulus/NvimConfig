@@ -36,7 +36,6 @@ return {
         border = "rounded",
         padding = { 2, 2, 2, 2 },
       },
-      triggers = { "<leader>", "<localleader>" },
       disable = { ft = { "help", "dashboard" }, bt = { "terminal" } },
     }
     wk.setup(opts)

@@ -1,9 +1,9 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
+  lazy = true,
   dependencies = {
     { "zbirenbaum/copilot.lua" },
     { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope.nvim" },
     {
       "MeanderingProgrammer/render-markdown.nvim",
       config = function()
