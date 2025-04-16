@@ -6,7 +6,7 @@ return {
     event = "BufReadPost",
     opts = {
       suggestion = {
-        auto_trigger = true,
+        auto_trigger = false,
         debounce = 150,
         keymap = {
           accept = false,
