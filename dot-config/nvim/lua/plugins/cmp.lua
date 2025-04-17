@@ -75,7 +75,7 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 500,
+        auto_show_delay_ms = 1000,
         window = select_window,
       },
     }
@@ -103,6 +103,7 @@ return {
           name = "Nerd Fonts",
           score_offset = 15,
           opts = { insert = true },
+          min_keyword_length = 3,
         },
         path = {
           opts = {
@@ -113,7 +114,7 @@ return {
           module = "blink-ripgrep",
           name = "Ripgrep",
           opts = {
-            prefix_min_len = 3,
+            prefix_min_len = 5,
             context_size = 5,
             max_filesize = "1M",
             project_root_marker = ".git",
