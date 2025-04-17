@@ -32,7 +32,18 @@ return {
 
     opts.completion = {
       menu = {
-        auto_show = function(ctx) return ctx.mode ~= "cmdline" end,
+        auto_show = function(ctx)
+          local excluded_filetypes = {
+            "copilot-chat",
+          }
+
+          if ctx.mode == "cmdline" then
+            return false
+          elseif vim.tbl_contains(excluded_filetypes, vim.bo.filetype) then
+            return false
+          end
+          return true
+        end,
         border = border,
         draw = {
           padding = { 1, 1 },
@@ -87,7 +98,7 @@ return {
     opts.sources = {
       min_keyword_length = function()
         if vim.bo.filetype == "markdown" then return 2 end
-        return 0
+        return 1
       end,
       default = {
         "lsp",
