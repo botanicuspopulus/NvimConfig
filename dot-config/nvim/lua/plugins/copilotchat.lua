@@ -1,6 +1,6 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
-  lazy = true,
+  event = "User AstroFile",
   dependencies = {
     { "zbirenbaum/copilot.lua" },
     { "nvim-lua/plenary.nvim" },
