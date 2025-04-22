@@ -13,7 +13,9 @@ return {
       null_ls.builtins.formatting.djlint,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.markdownlint,
-      null_ls.builtins.formatting.prettierd,
+      null_ls.builtins.formatting.prettierd.with {
+        filetypes = { "css", "html", "javascript" },
+      },
       null_ls.builtins.formatting.shellharden,
       null_ls.builtins.formatting.shfmt,
       null_ls.builtins.formatting.stylelint,
@@ -30,13 +32,11 @@ return {
       null_ls.builtins.diagnostics.editorconfig_checker,
       null_ls.builtins.diagnostics.gccdiag,
       null_ls.builtins.diagnostics.markdownlint,
-      null_ls.builtins.diagnostics.mypy,
       null_ls.builtins.diagnostics.selene,
       null_ls.builtins.diagnostics.stylelint,
       null_ls.builtins.diagnostics.tidy,
       null_ls.builtins.diagnostics.yamllint,
 
-      null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
     }
 
