@@ -49,8 +49,6 @@ return {
         "mypy",
         "neocmakelsp",
         "prettierd",
-        "pydocstyle",
-        "python-lsp-server",
         "ruff",
         "selene",
         "shellcheck",
