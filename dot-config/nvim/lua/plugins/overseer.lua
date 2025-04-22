@@ -2,6 +2,7 @@ return {
   "stevearc/overseer.nvim",
   event = "User AstroFile",
   opts = {
+    strategy = "toggleterm",
     templates = { "builtin", "user" },
     components = {
       "on_output_quickfix",

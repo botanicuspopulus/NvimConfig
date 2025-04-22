@@ -12,7 +12,7 @@ return {
             return {
               cmd = { "uv" },
               args = { "run", vim.fn.expand "%:p" },
-              components = { "default", "on_output_quickfix" },
+              components = { "default" },
             }
           end,
           priority = base_priority - 15,
@@ -40,7 +40,7 @@ return {
             return {
               cmd = { "uv" },
               args = args,
-              components = { "deafult", "on_output_quickfix" },
+              components = { "default" },
             }
           end,
           priority = base_priority - 10,
@@ -54,7 +54,7 @@ return {
             return {
               cmd = { "python" },
               args = { vim.fn.expand "%:p" },
-              components = { "default", "on_output_quickfix" },
+              components = { "default" },
             }
           end,
           priority = base_priority - 5,
@@ -66,7 +66,7 @@ return {
             return {
               cmd = { "pytest" },
               args = { vim.fn.expand "%:p" },
-              components = { "default", "on_output_quickfix" },
+              components = { "default" },
             }
           end,
           priority = base_priority,
