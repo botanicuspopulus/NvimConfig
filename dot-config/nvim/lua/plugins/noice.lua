@@ -15,7 +15,7 @@ return {
         position = { row = 8, col = "50%" },
         size = { width = 60, height = 10 },
         border = { style = "none", padding = { 0, 1 } },
-        win_options = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+        win_options = { winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" } },
       },
       split = {
         enter = true,
