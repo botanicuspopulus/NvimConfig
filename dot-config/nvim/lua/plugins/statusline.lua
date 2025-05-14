@@ -1,3 +1,12 @@
+local WrappingStatus = {
+  provider = function()
+    local mode = require("wrapping").get_current_mode()
+    if mode == "" or not mode then return "" end
+    return " WRAP: " .. string.upper(mode) .. " "
+  end,
+  update = { "OptionSet", pattern = "wrap", callback = vim.schedule_wrap(function() vim.cmd "redrawstatus" end) },
+}
+
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
@@ -19,6 +28,7 @@ return {
       status.component.lsp {
         lsp_client_names = false,
       },
+      WrappingStatus,
       status.component.nav(),
     }
   end,
