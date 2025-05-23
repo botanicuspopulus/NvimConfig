@@ -31,6 +31,12 @@ return {
     }
 
     opts.completion = {
+      trigger = {
+        show_on_blocked_trigger_characters = function(_)
+          if vim.bo.filetype == "python" then return { ":" } end
+          return { "\n", "\t", " " }
+        end,
+      },
       menu = {
         auto_show = function(ctx)
           if ctx.mode == "cmdline" then return false end
@@ -89,18 +95,23 @@ return {
 
     opts.sources = {
       min_keyword_length = function()
-        if vim.bo.filetype == "markdown" then return 2 end
-        return 1
+        if vim.bo.filetype == "markdown" then return 3 end
+        return 2
       end,
       default = {
         "lsp",
-        "snippets",
         "buffer",
         "path",
         "ripgrep",
         "nerdfont",
       },
       providers = {
+        lsp = {
+          score_offset = 1,
+        },
+        buffer = {
+          score_offset = 2,
+        },
         nerdfont = {
           module = "blink-nerdfont",
           name = "Nerd Fonts",
