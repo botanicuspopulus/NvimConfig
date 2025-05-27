@@ -102,31 +102,27 @@ return {
         "lsp",
         "buffer",
         "path",
+        "buffer",
         "ripgrep",
+        "snippets",
         "nerdfont",
       },
       providers = {
         lsp = {
           score_offset = 1,
         },
-        buffer = {
-          score_offset = 2,
-        },
-        nerdfont = {
-          module = "blink-nerdfont",
-          name = "Nerd Fonts",
-          score_offset = 15,
-          opts = { insert = true },
-          min_keyword_length = 3,
-        },
         path = {
+          name = "Path",
+          score_offset = 40,
           opts = {
             get_cwd = function(_) return vim.fn.getcwd() end,
           },
         },
+        buffer = { name = "Buffer", score_offset = 30 },
         ripgrep = {
           module = "blink-ripgrep",
           name = "Ripgrep",
+          score_offset = 20,
           opts = {
             prefix_min_len = 5,
             context_size = 5,
@@ -136,6 +132,14 @@ return {
             fallback_to_regex_highlighting = true,
           },
         },
+        nerdfont = {
+          module = "blink-nerdfont",
+          name = "Nerd Font",
+          score_offset = 15,
+          opts = { insert = true },
+          min_keyword_length = 3,
+        },
+        snippets = { name = "Snippets", score_offset = 5 },
       },
     }
 
@@ -146,9 +150,11 @@ return {
     opts.fuzzy = {
       implementation = "rust",
       sorts = {
-        "exact",
-        "score",
-        "sort_text",
+        "exact", -- 1. exact matches
+        "score", -- 2. fuzzy match quality
+        "sort_text", -- 3. LSP context hints
+        "label", -- 4. alphabetical cleanup
+        "kind", -- 5. semantic grouping
       },
     }
   end,
