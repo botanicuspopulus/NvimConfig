@@ -56,6 +56,7 @@ return {
         matchtime = 2,
         mouse = "nv",
         signcolumn = "auto",
+        textwidth = 80,
         inccommand = "nosplit",
         shiftwidth = 2,
         tabstop = 2,
