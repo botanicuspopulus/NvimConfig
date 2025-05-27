@@ -14,6 +14,10 @@ return {
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.markdownlint,
       null_ls.builtins.formatting.prettierd.with {
+        extra_args = {
+          "--prose-wrap=always",
+          "--embedded-language-formatting=auto",
+        },
         filetypes = { "css", "html", "javascript" },
       },
       null_ls.builtins.formatting.shellharden,
