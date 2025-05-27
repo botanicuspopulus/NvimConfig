@@ -96,7 +96,7 @@ return {
     { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
   },
   opts = {
-    model = "claude-3.7-sonnet",
+    model = "o4-mini",
     window = {
       layout = "vertical",
       border = "rounded",
