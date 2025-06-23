@@ -18,15 +18,42 @@ return {
     formatting = {
       format_on_save = {
         enabled = true,
-        allow_filetypes = {},
-        ignore_filetypes = {},
       },
       disabled = { "lua_ls" },
       timeout_ms = 2000,
     },
-    servers = {},
+    servers = {
+      "basedpyright",
+      "ruff",
+    },
     ---@diagnostic disable: missing-fields
-    config = {},
+    config = {
+      biome = {
+        cmd = { "biome", "lsp-proxy" },
+        filetypes = {
+          "javascript",
+          "typescript",
+          "json",
+          "json",
+          "jsonc",
+          "css",
+          "html",
+        },
+        root_dir = require("lspconfig.util").root_pattern("biome.json", "package.json", ".git"),
+        format = { enabled = false },
+      },
+      basedpyright = {
+        settings = {
+          basedpyright = {
+            disableLanguageServices = false,
+            analysis = {
+              typeCheckingMode = "standard",
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      },
+    },
     handlers = { icons = true },
     autocmds = {
       no_insert_inlay_hints = {

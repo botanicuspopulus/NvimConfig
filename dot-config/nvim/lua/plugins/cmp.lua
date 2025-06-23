@@ -109,7 +109,8 @@ return {
       },
       providers = {
         lsp = {
-          score_offset = 1,
+          name = "LSP",
+          score_offset = 50,
         },
         path = {
           name = "Path",
