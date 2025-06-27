@@ -25,9 +25,42 @@ return {
     servers = {
       "basedpyright",
       "ruff",
+      harper_ls = {
+        capabilities = {
+          textDocument = {
+            completion = {
+              completionItem = {
+                snippetSupport = true,
+              },
+            },
+          },
+        },
+        init_options = {
+          showNotificationsOnStart = false,
+          suggestionContext = "current-sentence",
+        },
+      },
     },
     ---@diagnostic disable: missing-fields
     config = {
+      harper_ls = {
+        settings = {
+          ["harper-ls"] = {
+            codeActions = {
+              forceStable = true,
+            },
+            linters = {
+              spelled_numbers = true,
+              linking_verbs = true,
+            },
+            languages = {
+              markdown = { enabled = true },
+              latex = { enabled = true },
+              plaintext = { enabled = true },
+            },
+          },
+        },
+      },
       biome = {
         cmd = { "biome", "lsp-proxy" },
         filetypes = {
