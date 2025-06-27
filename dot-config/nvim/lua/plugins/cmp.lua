@@ -125,7 +125,7 @@ return {
           name = "Ripgrep",
           score_offset = 20,
           opts = {
-            prefix_min_len = 5,
+            prefix_min_len = 3,
             context_size = 5,
             max_filesize = "1M",
             project_root_marker = ".git",
