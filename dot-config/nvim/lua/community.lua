@@ -42,7 +42,7 @@ return {
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.motion.flit-nvim" },
   { import = "astrocommunity.motion.marks-nvim" },
-  { import = "astrocommunity.search.nvim-spectre" },
+  { import = "astrocommunity.search.grug-far-nvim" },
   { import = "astrocommunity.remote-development.remote-sshfs-nvim" },
   { import = "astrocommunity.syntax.hlargs-nvim" },
   { import = "astrocommunity.syntax.vim-cool" },
