@@ -102,7 +102,6 @@ return {
         "lsp",
         "buffer",
         "path",
-        "buffer",
         "ripgrep",
         "snippets",
         "nerdfont",
