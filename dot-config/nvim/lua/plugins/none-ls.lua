@@ -9,7 +9,6 @@ return {
       null_ls.builtins.formatting.asmfmt,
       null_ls.builtins.formatting.cbfmt,
       null_ls.builtins.formatting.clang_format,
-      null_ls.builtins.formatting.cmake_format,
       null_ls.builtins.formatting.djlint,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.markdownlint,
@@ -25,11 +24,8 @@ return {
       null_ls.builtins.formatting.stylelint,
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.tidy,
-      null_ls.builtins.formatting.yamlfmt,
 
-      null_ls.builtins.diagnostics.ansiblelint,
       null_ls.builtins.diagnostics.checkmake,
-      null_ls.builtins.diagnostics.cmake_lint,
       null_ls.builtins.diagnostics.cppcheck,
       null_ls.builtins.diagnostics.djlint,
       null_ls.builtins.diagnostics.dotenv_linter,
@@ -39,7 +35,6 @@ return {
       null_ls.builtins.diagnostics.selene,
       null_ls.builtins.diagnostics.stylelint,
       null_ls.builtins.diagnostics.tidy,
-      null_ls.builtins.diagnostics.yamllint,
 
       null_ls.builtins.code_actions.refactoring,
     }
