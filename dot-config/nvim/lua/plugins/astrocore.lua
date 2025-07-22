@@ -24,6 +24,8 @@ return {
         header = "",
         prefix = "",
       },
+      virtual_text = true,
+      virtual_lines = { current_line = true },
       underline = true,
       severity_sort = true,
       update_in_insert = false,

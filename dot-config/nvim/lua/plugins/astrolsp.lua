@@ -89,6 +89,39 @@ return {
     },
     handlers = { icons = true },
     autocmds = {
+      diagnostic_only_virtual_lines = {
+        {
+          event = { "CursorMoved", "DiagnosticChanged" },
+          callback = function()
+            if not require("astrocore.buffer").is_valid() then return end
+            if og_virt_line == nil then og_virt_line = vim.diagnostic.config().virtual_lines end
+
+            if not (og_virt_line and og_virt_line.current_line) then
+              if og_virt_text then
+                vim.diagnostic.config { virtual_text = og_virt_text }
+                og_virt_text = nil
+              end
+              return
+            end
+
+            if og_virt_text == nil then og_virt_text = vim.diagnostic.config().virtual_text end
+
+            local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+            if vim.tbl_isempty(vim.diagnostic.get(0, { lnum = lnum })) then
+              vim.diagnostic.config { virtual_text = og_virt_text }
+            else
+              vim.diagnostic.config { virtual_text = false }
+            end
+          end,
+        },
+        {
+          event = "ModeChanged",
+          callback = function()
+            if require("astrocore.buffer").is_valid() then pcall(vim.diagnostic.show) end
+          end,
+        },
+      },
       no_insert_inlay_hints = {
         cond = vim.lsp.inlay_hint and "textDocument/inlayHint" or false,
         events = {
@@ -128,6 +161,38 @@ return {
     mappings = {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
+        grr = {
+          function() require("snacks.picker").lsp_references() end,
+          desc = "Find LSP references",
+          cond = "textDocument/references",
+        },
+        gri = {
+          function() require("snacks.picker").lsp_implementations() end,
+          desc = "Find LSP implementations",
+          cond = "textDocument/implementation",
+        },
+        gO = {
+          function() require("snacks.picker").lsp_symbols() end,
+          desc = "Find LSP outline",
+          cond = "textDocument/documentSymbol",
+        },
+        gd = {
+          function() require("snacks.picker").lsp_definitions() end,
+        },
+        gI = {
+          function() require("snacks.picker").lsp_implementations() end,
+        },
+        gy = {
+          function() require("snacks.picker").lsp_type_definitions() end,
+        },
+        ["<leader>lG"] = {
+
+          function() require("snacks.picker").lsp_workspace_symbols() end,
+          ,
+        },
+        ["<leader>lR"] = {
+          function() require("snacks.picker").lsp_references() end,
+        },
       },
     },
     on_attach = function(client, _)
