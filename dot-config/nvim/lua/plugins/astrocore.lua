@@ -34,6 +34,27 @@ return {
       autochdir = false,
       notify = false,
     },
+    autocmds = {
+      disable_expandtab = {
+        {
+          event = "FileType",
+          pattern = { "sh", "zsh", "bash", "make" },
+          desc = "Use tabs for sh/zsh/bash/make files",
+          callback = function()
+            local ft = vim.bo.filetype
+            if ft == "make" then
+              vim.opt.expandtab = false
+              vim.opt.shiftwidth = 8
+              vim.opt.tabstop = 8
+            elseif ft == "sh" or ft == "zsh" or ft == "bash" then
+              vim.opt.expandtab = false
+              vim.opt.shiftwidth = 4
+              vim.opt.tabstop = 4
+            end
+          end,
+        },
+      },
+    },
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
