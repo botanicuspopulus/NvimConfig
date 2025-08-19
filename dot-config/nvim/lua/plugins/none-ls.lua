@@ -20,7 +20,6 @@ return {
         filetypes = { "css", "html", "javascript" },
       },
       null_ls.builtins.formatting.shellharden,
-      null_ls.builtins.formatting.shfmt,
       null_ls.builtins.formatting.stylelint,
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.tidy,
