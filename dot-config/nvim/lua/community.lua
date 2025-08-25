@@ -4,8 +4,6 @@ return {
 
   { import = "astrocommunity.bars-and-lines.vim-illuminate" },
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
-  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
-  { import = "astrocommunity.completion.supermaven-nvim" },
   { import = "astrocommunity.code-runner.compiler-nvim" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.code-runner.sniprun" },
@@ -25,7 +23,7 @@ return {
       {
         "<leader>r",
         mode = { "n", "v" },
-        desc = "襁Refactoring",
+        desc = "󰖷 Refactoring",
       },
     },
   },
@@ -43,7 +41,6 @@ return {
   { import = "astrocommunity.motion.flit-nvim" },
   { import = "astrocommunity.motion.marks-nvim" },
   { import = "astrocommunity.pack.ansible" },
-  { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.hyprlang" },
