@@ -186,9 +186,7 @@ return {
           function() require("snacks.picker").lsp_type_definitions() end,
         },
         ["<leader>lG"] = {
-
           function() require("snacks.picker").lsp_workspace_symbols() end,
-          ,
         },
         ["<leader>lR"] = {
           function() require("snacks.picker").lsp_references() end,
