@@ -1,43 +1,46 @@
 return {
-  "folke/which-key.nvim",
-  config = function(_, opts)
-    local wk = require "which-key"
-    opts = {
-      preset = "modern",
-      plugins = {
-        marks = true,
-        registers = true,
-        spelling = { enabled = true, suggestions = 20 },
-      },
-      presets = {
-        operators = true,
-        motions = true,
-        text_objects = true,
-        windows = true,
-        nav = true,
-        z = true,
-        g = true,
-      },
-      icons = {
-        mappings = false,
-        breadcrumb = "󰄾",
-        separator = "  ",
-        group = "󰐕 ",
-        colors = false,
-      },
-
-      layout = {
-        height = { min = 4, max = 25 },
-        width = { min = 20, max = 50 },
-        spacing = 3,
-        align = "center",
-      },
-      win = {
-        border = "rounded",
-        padding = { 2, 2, 2, 2 },
-      },
-      disable = { ft = { "help", "dashboard" }, bt = { "terminal" } },
-    }
-    wk.setup(opts)
-  end,
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {},
+		spec = {
+			{
+				mode = { "n", "v" },
+				{
+					{ "<leader>f", group = "file/find" },
+					{ "<leader>g", group = "git" },
+					{ "<leader>gh", group = "hunks" },
+					{ "<leader>ui", group = "ui" },
+					{
+						"<leader>b",
+						group = "buffer",
+            expand = function()
+              return require('which-key.extras').expand.buf()
+            end,
+					},
+          {
+            "<leader>w",
+            group = "windows",
+            proxy = "<c-w>",
+            expand = function()
+              return require('which-key.extras').expand.win()
+            end,
+          },
+					{ "[", group = "prev" },
+					{ "]", group = "next" },
+					{ "g", group = "goto" },
+					{ "z", group = "fold" },
+				},
+			},
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
+	},
 }

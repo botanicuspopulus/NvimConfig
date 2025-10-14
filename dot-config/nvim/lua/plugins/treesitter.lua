@@ -1,121 +1,129 @@
----@type LazySpec
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = "User AstroFile",
-    dependencies = {
-      "LiadOz/nvim-dap-repl-highlights",
-    },
-    opts = {
-      endwise = { enable = true },
-      indent = { enable = true },
-      matchup = {
-        enable = true,
-        include_match_words = true,
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
-      ensure_installed = {
-        "asm",
-        "awk",
-        "bash",
-        "bibtex",
-        "bitbake",
-        "c",
-        "cmake",
-        "comment",
-        "cpp",
-        "css",
-        "csv",
-        "cuda",
-        "devicetree",
-        "diff",
-        "dockerfile",
-        "dot",
-        "doxygen",
-        "editorconfig",
-        "firrtl",
-        "foam",
-        "gitattributes",
-        "gitcommit",
-        "git_config",
-        "gitignore",
-        "git_rebase",
-        "html",
-        "htmldjango",
-        "http",
-        "hyprlang",
-        "ini",
-        "javascript",
-        "jq",
-        "jsdoc",
-        "json",
-        "jsonc",
-        "just",
-        "kconfig",
-        "latex",
-        "lua",
-        "luadoc",
-        "make",
-        "markdown",
-        "markdown_inline",
-        "matlab",
-        "mermaid",
-        "meson",
-        "ninja",
-        "passwd",
-        "php",
-        "powershell",
-        "printf",
-        "rasi",
-        "readline",
-        "regex",
-        "requirements",
-        "rust",
-        "scss",
-        "sql",
-        "ssh_config",
-        "svelte",
-        "tcl",
-        "todotxt",
-        "toml",
-        "tsv",
-        "typescript",
-        "verilog",
-        "vhdl",
-        "vim",
-        "vimdoc",
-        "xml",
-        "yaml",
-        "zathurarc",
-      },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.install").compilers = { "gcc" }
-      require("nvim-treesitter.configs").setup(opts)
-    end,
-  },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "VeryLazy" },
+		cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+		build = ":TSUpdate",
+		opts = {
+			ensure_installed = {
+				"bash",
+				"c",
+				"cpp",
+				"diff",
+				"html",
+				"javascript",
+				"jsdoc",
+				"json",
+				"jsonc",
+				"latex",
+				"lua",
+				"luadoc",
+				"luap",
+				"markdown",
+				"markdown_inline",
+				"printf",
+				"python",
+				"regex",
+				"toml",
+				"tsx",
+				"typescript",
+				"vim",
+				"vimdoc",
+				"xml",
+				"yaml",
+			},
+			auto_install = true,
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false,
+			},
+			indent = { enable = true },
+			folds = { enable = true },
+			config = function(_, opts)
+				require("nvim-treesitter.configs").setup(opts)
+			end,
+		},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		event = "VeryLazy",
+		branch = "main",
+		opts = {
+			select = {
+				enable = true,
+				lookahead = true,
+				keymaps = {
+					["af"] = "@function.outer",
+					["if"] = "@function.inner",
+					["ac"] = "@class.outer",
+					["ic"] = "@class.inner",
+					["aa"] = "@parameter.outer",
+					["ia"] = "@parameter.inner",
+				},
+			},
+			move = {
+				enable = true,
+				set_jumps = true,
+				keys = {
+					goto_next_start = {
+						["]f"] = "@function.outer",
+						["]c"] = "@class.outer",
+						["]a"] = "@parameter.inner",
+					},
+					goto_next_end = {
+						["]F"] = "@function.outer",
+						["]C"] = "@class.outer",
+						["]A"] = "@parameter.inner",
+					},
+					goto_previous_start = {
+						["[f"] = "@function.outer",
+						["[c"] = "@class.outer",
+						["[a"] = "@parameter.inner",
+					},
+					goto_previous_end = {
+						["[F"] = "@function.outer",
+						["[C"] = "@class.outer",
+						["[A"] = "@parameter.inner",
+					},
+				},
+			},
+		},
+		config = function(_, opts)
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("nvim_treesitter_textobjects", { clear = true }),
+				callback = function(ev)
+					local moves = vim.tbl_get(opts, "move", "keys") or {}
+
+					for method, keymaps in pairs(moves) do
+						for key, query in pairs(keymaps) do
+							local desc = query:gsub("@", ""):gsub("%..*", "")
+							desc = desc:sub(1, 1):upper() .. desc:sub(2)
+							desc = (key:sub(1, 1) == "[" and "Prev " or "Next ") .. desc
+							desc = desc .. (key:sub(2, 2) == key:sub(2, 2):upper() and " End" or " Start")
+
+							if not (vim.wo.diff and key:find("[cC]")) then
+								vim.keymap.set({ "n", "x", "o" }, key, function() 
+                  require('nvim-treesitter-textobjects.move')[method](query, 'textobjects')
+                end, {
+									buffer = ev.buf,
+									desc = desc,
+									silent = true,
+								})
+							end
+						end
+					end
+				end,
+			})
+		end,
+	},
   {
     "windwp/nvim-ts-autotag",
-    opts = {
-      filetypes = {
-        "html",
-        "javascript",
-        "javascriptreact",
-        "jsx",
-        "svelte",
-        "tsx",
-        "typescript",
-        "typescriptreact",
-        "xml",
-      },
-    },
+    event = "VeryLazy",
+    opts = {},
   },
+  {
+    'folke/ts-comments.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  }
 }
