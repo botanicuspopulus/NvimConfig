@@ -1,37 +1,19 @@
---
-vim.opt.termguicolors = true
-
--- Leaders
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
--- Core indentation options
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftround = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true
-
--- Line numbers
-vim.opt.number = true
-
-local grp = vim.api.nvim_create_augroup("number_toggle", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
-  group = grp,
-  callback = function() vim.wo.relativenumber = true end,
-})
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
-  group = grp,
-  callback = function() vim.wo.relativenumber = false end,
-})
+for _, source in ipairs {
+	'config.autocmds',
+	'config.options',
+	'config.mappings',
+} do
+	local ok, fault = pcall(require, source)
+	if not ok then vim.api.nvim_err_writeln("Failed to source " .. source .. '\n\n' .. fault) end
+end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local repo = "https://github.com/folke/lazy.nvim.git"
+
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local repo = "https://github.com/folke/lazy.nvim.git"
 	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", repo, lazypath })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
@@ -41,25 +23,34 @@ require("lazy").setup({
     rtp = {
       disable_plugins = {
         '2html_plugin',
+        'bureport',
+        'compiler',
+        'ftplugin',
         'getscript',
         'getscriptPlugin',
-        'logipat',
-        'netrw',
-        'netrwFileHandlers',
+        'gzip',
         'loaded_remote_plugins',
         'loaded_tutor_mode_plugin',
+        'logipat',
+        'matchit',
+        'matchparen',
+        'netrw',
+        'netrwFileHandlers',
+        'netrwPlugin',
         'netrwSettings',
+        'optwin',
+        'rplugin',
         'rrhelper',
         'spellfile_plugin',
-        'tohtml',
-        'gzip',
-        'matchit',
-        'tutor',
-        'zipPlugin',
-        'netrwPlugin',
+        'synmenu',
         'tar',
         'tarPlugin',
-        'matchparen',
+        'tohtml',
+        'tutor',
+        'vimball',
+        'vimballPlugin',
+        'zip',
+        'zipPlugin',
       },
     },
   },
