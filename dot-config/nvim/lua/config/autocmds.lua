@@ -2,16 +2,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local function augroup(name) return vim.api.nvim_create_augroup("botan_" .. name, { clear = true }) end
 
--- Highlight on yank
-autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank {
-      higroup = "IncSearch",
-      timeout = "1000",
-    }
-  end,
-})
-
 -- Check if we need to reload the file
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup "checktime",
