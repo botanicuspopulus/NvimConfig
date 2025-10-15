@@ -1,6 +1,21 @@
+local root_files = {
+  '.luarc.json',
+  '.luarc.jsonc',
+  '.luacheckrc',
+  '.stylua.toml',
+  'stylua.toml',
+  'selene.toml',
+  'selene.yml',
+  '.git',
+}
+
 return {
 	{
 		"neovim/nvim-lspconfig",
+    dependencies = {
+      'mason-org/mason.nvim',
+      'mason-org/mason-lspconfig.nvim',
+    },
 		opts = function()
 			local ret = {
 				diagnostics = {
@@ -41,6 +56,13 @@ return {
           lua_ls = {
             settings = {
               Lua = {
+                format = {
+                  enable = true,
+                  defaultConfig = {
+                    indent_style = 'space',
+                    indent_size = '2',
+                  }
+                },
                 workspace = {
                   checkThirdParty = false,
                 },
