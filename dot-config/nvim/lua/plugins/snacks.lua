@@ -316,6 +316,18 @@ return {
 				end,
 				desc = "Buffer: Delete",
 			},
+      {
+        '<leader>bo',
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = "Buffer: Delete Others",
+      },
+      {
+        '<leader>bD',
+        '<cmd>:bd<cr>',
+        desc = 'Buffer: Delete Buffer and Window',
+      },
 			{
 				"<leader>tt",
 				function()
