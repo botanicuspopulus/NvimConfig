@@ -1,7 +1,6 @@
 local map = vim.keymap.set
 
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit'})
-map({ 'n', 'i', 'x', 's' }, '<leader>S', '<cmd>w<cr><esc>', { desc = 'Save' })
 
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
