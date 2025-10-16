@@ -38,6 +38,26 @@ return {
       sources = {
         compat = {},
         default = { "lsp", "path", "snippets", "buffer" },
+        providers = {
+          lsp = {
+            timeout_ms = 500,
+            max_items = 10,
+            min_keyword_length = 2,
+            async = true,
+          },
+          buffer = {
+            max_items = 10,
+            min_keyword_length = 4,
+          },
+          path = {
+            max_items = 5,
+          },
+          snippets = {
+            max_items = 8,
+            min_keyword_length = 3,
+            should_show_items = function(ctx) return true end,
+          }
+        },
       },
       cmdline = {
         enabled = true,
