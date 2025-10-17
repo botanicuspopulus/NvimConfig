@@ -1,231 +1,168 @@
 local root_files = {
-  '.luarc.json',
-  '.luarc.jsonc',
-  '.luacheckrc',
-  '.stylua.toml',
-  'stylua.toml',
-  'selene.toml',
-  'selene.yml',
-  '.git',
+  ".luarc.json",
+  ".luarc.jsonc",
+  ".luacheckrc",
+  ".stylua.toml",
+  "stylua.toml",
+  "selene.toml",
+  "selene.yml",
+  ".git",
 }
 
 return {
-	{
-		"neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
     dependencies = {
-      'mason-org/mason.nvim',
-      'mason-org/mason-lspconfig.nvim',
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
     },
-		opts = function()
-			local ret = {
-				diagnostics = {
-					underline = true,
-					update_in_insert = false,
-					virtual_text = {
-						spacing = 4,
-						source = "if_many",
-					},
-				},
-        severity_sort = true,
-        inlay_hints = {
-          enabled = true,
-          exclude = {
-            'vue',
-          }
+    opts = {
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          spacing = 4,
+          source = "if_many",
         },
-        codelens = {
-          enabled = false,
+      },
+      severity_sort = true,
+      inlay_hints = {
+        enabled = true,
+        exclude = {
+          "vue",
         },
-        folds = {
-          enabled = true,
-        },
-        capabilities = {
-          workspace = {
-            fileOperations = {
-              didRename = true,
-              willRename = true,
-            }
-          }
-        },
-        format = {
-          formatting_options = nil,
-          timeout_ms = nil,
-        },
-        servers = {
-          stylua = { enabled = false },
-          clangd = {
-            keys = {
-              { '<leader>ch', '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
-            },
-            root_markers = {
-              'compile_commands.json',
-              'compile_flags.txt',
-              'configure.ac',
-              'Makefile',
-              'configure.in',
-              'config.h.in',
-              'meson.build',
-              'meson_options.txt',
-              'build.ninja',
-              '.git',
-            },
-            capabilities = {
-              offsetEncoding = { 'utf-16' },
-            },
-            cmd = {
-              'clangd',
-              '--background-index',
-              '--clang-tidy',
-              '--header-insertion=iwyu',
-              '--completion-style=detailed',
-              '--function-arg-placeholders',
-              '--fallback-style=llvm',
-            },
-            init_options = {
-              usePlaceHolders = true,
-              completeUnimported = true,
-              clangFileStatus = true,
-            },
-          },
-          lua_ls = {
-            settings = {
-              Lua = {
-                format = {
-                  enable = true,
-                  defaultConfig = {
-                    indent_style = 'space',
-                    indent_size = '2',
-                  }
-                },
-                workspace = {
-                  checkThirdParty = false,
-                },
-                codeLens = {
-                  enable = true,
-                },
-                completion = {
-                  callSnippet = 'Replace',
-                },
-                doc = {
-                  privateName = { '^_' },
-                },
-                hint = {
-                  enable = true,
-                  setType = false,
-                  paramType = true,
-                  paramName = 'Disable',
-                  semicolon = 'Disable',
-                  arrayIndex = 'Disable',
-                },
-              },
-            },
+      },
+      codelens = {
+        enabled = false,
+      },
+      folds = {
+        enabled = true,
+      },
+      capabilities = {
+        workspace = {
+          fileOperations = {
+            didRename = true,
+            willRename = true,
           },
         },
-			}
+      },
+      format = {
+        formatting_options = nil,
+        timeout_ms = nil,
+      },
+    },
+    config = function()
+      vim.lsp.config("*", {
+        root_markers = { ".git" },
+      })
 
-      return ret
-		end,
-		config = function()
-			vim.lsp.config("*", {
-				root_markers = { ".git" },
-			})
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } },
+          },
+        },
+      })
 
-			vim.lsp.config("lua_ls", {
-				settings = {
-					Lua = {
-						diagnostics = { globals = { "vim" } },
-					},
-				},
-			})
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          -- Enable completion triggered by <c-x><c-o>
+          vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-				callback = function(ev)
-					-- Enable completion triggered by <c-x><c-o>
-					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+          local function keymap_n(keybind, action, desc)
+            vim.keymap.set("n", keybind, action, { desc = desc, buffer = ev.buf })
+          end
 
-					vim.keymap.set(
-						"n",
-						"gD",
-						vim.lsp.buf.declaration,
-						{ desc = "LSP: Go To Declaration", buffer = ev.buf }
-					)
-					vim.keymap.set(
-						"n",
-						"gd",
-						vim.lsp.buf.definition,
-						{ desc = "LSP: Go To Definition", buffer = ev.buf }
-					)
-					vim.keymap.set(
-						"n",
-						"gtd",
-						vim.lsp.buf.type_definition,
-						{ desc = "LSP: Type Definition", buffer = ev.buf }
-					)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP: References", buffer = ev.buf })
-					vim.keymap.set(
-						"n",
-						"gi",
-						vim.lsp.buf.implementation,
-						{ desc = "LSP: Go To Implementation", buffer = ev.buf }
-					)
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP: Hover", buffer = ev.buf })
-					vim.keymap.set(
-						"n",
-						"<C-k>",
-						vim.lsp.buf.signature_help,
-						{ desc = "LSP: Open Signature Help", buffer = ev.buf }
-					)
+          local keys = {
+            {
+              "gD",
+              vim.lsp.buf.declaration,
+              "LSP: Go To Declaration",
+            },
+            {
+              "gd",
+              vim.lsp.buf.definition,
+              "LSP: Go To Definition",
+            },
+            {
+              "gy",
+              vim.lsp.buf.type_definition,
+              "LSP: Type Definition",
+            },
+            {
+              "gr",
+              vim.lsp.buf.references,
+              "LSP: References",
+            },
+            {
+              "gi",
+              vim.lsp.buf.implementation,
+              "LSP: Go To Implementation",
+            },
+            { "K", vim.lsp.buf.hover, "LSP: Hover" },
+            {
+              "<leader>ls",
+              vim.lsp.buf.signature_help,
+              "LSP: Open Signature Help",
+            },
 
-					-- Diagnostics
-					vim.keymap.set(
-						"n",
-						"<space>ld",
-						vim.diagnostic.open_float,
-						{ desc = "LSP: Show Diagnostic in Floating Window", buffer = ev.buf }
-					)
-					vim.keymap.set(
-						"n",
-						"[d",
-						vim.diagnostic.goto_prev,
-						{ desc = "LSP: Go To Next Diagnostic", buffer = ev.buf }
-					)
-					vim.keymap.set(
-						"n",
-						"]d",
-						vim.diagnostic.goto_next,
-						{ desc = "LSP: Go To Previous Diagnostic", buffer = ev.buf }
-					)
-					vim.keymap.set(
-						{ "n", "v" },
-						"<space>la",
-						vim.lsp.buf.code_action,
-						{ desc = "LSP: Code Action", buffer = ev.buf }
-					)
-					vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+            -- Diagnostics
+            {
+              "<space>ld",
+              vim.diagnostic.open_float,
+              "LSP: Show Diagnostic in Floating Window",
+            },
+            {
+              "[d",
+              vim.diagnostic.goto_prev,
+              "LSP: Go To Next Diagnostic",
+            },
+            {
+              "]d",
+              vim.diagnostic.goto_next,
+              "LSP: Go To Previous Diagnostic",
+            },
+            {
+              "<space>la",
+              vim.lsp.buf.code_action,
+              "LSP: Code Action",
+            },
+            {
+              "<space>lq",
+              vim.diagnostic.setloclist,
+              "LSP: Add Buffer Diagnostic to Location List",
+            },
 
-					-- Workspace Folders
-					vim.keymap.set(
-						"n",
-						"<space>lwa",
-						vim.lsp.buf.add_workspace_folder,
-						{ desc = "LSP: Add Workspace Folder", buffer = ev.buf }
-					)
-					vim.keymap.set(
-						"n",
-						"<space>lwr",
-						vim.lsp.buf.remove_workspace_folder,
-						{ desc = "LSP: Remove Workspace Folder", buffer = ev.buf }
-					)
-					vim.keymap.set("n", "<space>lwl", function()
-						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-					end, { desc = "LSP: List Workspace Folders", buffer = ev.buf })
-					vim.keymap.set("n", "<space>lr", vim.lsp.buf.rename, { desc = "LSP: Rename", buffer = ev.buf })
-					vim.keymap.set("n", "<space>lf", function()
-						vim.lsp.buf.format({ async = true })
-					end, { desc = "LSP: Format Buffer", buffer = ev.buf })
-				end,
-			})
-		end,
-	},
+            -- Workspace Folders
+            {
+              "<space>lwa",
+              vim.lsp.buf.add_workspace_folder,
+              "LSP: Add Workspace Folder",
+            },
+            {
+              "<space>lwr",
+              vim.lsp.buf.remove_workspace_folder,
+              "LSP: Remove Workspace Folder",
+            },
+            {
+              "<space>lwl",
+              function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+              "LSP: List Workspace Folders",
+            },
+            { "<space>lr", vim.lsp.buf.rename, "LSP: Rename" },
+            {
+              "<space>lf",
+              function() vim.lsp.buf.format { async = true } end,
+              "LSP: Format Buffer",
+            },
+          }
+
+          for _, keybind in ipairs(keys) do
+            keymap_n(unpack(keybind))
+          end
+        end,
+      })
+    end,
+  },
 }

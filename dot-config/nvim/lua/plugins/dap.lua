@@ -1,3 +1,5 @@
+local keymap = function(...) vim.keymap.set("n", ...) end
+
 vim.api.nvim_create_augroup("DapGroup", { clear = true })
 
 local function navigate(args)
@@ -30,7 +32,9 @@ end
 return {
   {
     "mfussenegger/nvim-dap",
-    lazy = false,
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
     config = function()
       local dap = require "dap"
 
@@ -90,7 +94,7 @@ return {
         pcall(dapui.toggle, layout_config.index)
       end
 
-      local keymap = {
+      local keys = {
         ["r"] = "repl",
         ["s"] = "stacks",
         ["w"] = "watches",
@@ -101,10 +105,10 @@ return {
 
       local function keymap_n(key, name)
         local desc = "Debug: Toggle " .. name:gsub("^%l", string.upper) .. "UI"
-        vim.keymap.set("n", "<leader>dt" .. key, function() toggle_debug_ui(name) end, { desc = desc })
+        keymap("<leader>dt" .. key, function() toggle_debug_ui(name) end, { desc = desc })
       end
 
-      for key, name in pairs(keymap) do
+      for key, name in pairs(keys) do
         keymap_n(key, name)
       end
 
@@ -130,5 +134,8 @@ return {
         if body.category == "console" then dapui.eval(body.output) end
       end
     end,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
   },
 }
