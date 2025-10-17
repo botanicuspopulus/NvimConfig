@@ -1,48 +1,65 @@
 return {
-	{
-		"MagicDuck/grug-far.nvim",
-		cmd = { "GrugFar", "GrugFarWithin" },
-		opts = {
-			headerMaxWidth = 80,
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = { "GrugFar", "GrugFarWithin" },
+    event = "BufEnter",
+    opts = {
+      headerMaxWidth = 80,
       resultLocation = { showNumberLabel = true },
-		},
-		config = function(_, opts)
-			require("grug-far").setup(opts)
-			local grug = require("grug-far")
+    },
+    keys = {},
+    config = function(_, opts)
+      local grug = require "grug-far"
 
-			vim.keymap.set({ "n", "v" }, "<leader>sr", function()
-				local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+      grug.setup(opts)
 
-				grug.open({
-					transient = true,
-					prefills = {
-						filesFilter = ext and ext ~= "" and ("*." .. ext) or nil,
-					},
-				})
-			end, { desc = "Search and Replace" })
+      local function keymap(mode, l, h, desc) vim.keymap.set(mode, l, h, { desc = desc }) end
 
-      vim.keymap.set('n', '<leader>sf', function()
-        grug.toggle_instance({
-          instanceName = 'far',
-          staticTitle = 'Search and Replace',
-        })
-      end, { desc = "Toggle Search and Replace" })
+      keymap({ "n", "v" }, "<leader>sr", function()
+        local ext = vim.bo.buftype == "" and vim.fn.expand "%:e"
 
-			vim.keymap.set({ "n" }, "<leader>s1", function()
-				grug.open({ transient = true, prefills = { paths = vim.fn.expand("%") } })
-			end, { desc = "Search and Replace (Current File)" })
+        grug.open {
+          transient = true,
+          prefills = {
+            filesFilter = ext and ext ~= "" and ("*." .. ext) or nil,
+          },
+        }
+      end, "Search and Replace")
 
-			vim.keymap.set("n", "<leader>sw", function()
-				grug.open({ transient = true, prefills = { search = vim.fn.expand("<cword>") } })
-			end, { desc = "Search and Replace (Word)" })
+      keymap(
+        "n",
+        "<leader>sf",
+        function()
+          grug.toggle_instance {
+            instanceName = "far",
+            staticTitle = "Search and Replace",
+          }
+        end,
+        "Toggle Search and Replace"
+      )
 
-      vim.keymap.set('x', '<leader>ss', function()
-        grug.open({ transient = true })
-      end, { desc = "Search and Replace (Use Selection)" })
+      keymap(
+        { "n" },
+        "<leader>s1",
+        function() grug.open { transient = true, prefills = { paths = vim.fn.expand "%" } } end,
+        "Search and Replace (Current File)"
+      )
 
-      vim.keymap.set({ 'n', 'x' }, '<leader>si', function()
-        grug.open({ visualSelectionUsage = 'operate-within-range' })
-      end, { desc = 'Search and Replace (Within Selection)'})
-		end,
-	},
+      keymap(
+        "n",
+        "<leader>sw",
+        function() grug.open { transient = true, prefills = { search = vim.fn.expand "<cword>" } } end,
+        "Search and Replace (Word)"
+      )
+
+      keymap("x", "<leader>ss", function() grug.open { transient = true } end, "Search and Replace (Use Selection)")
+
+      keymap(
+        { "n", "x" },
+        "<leader>si",
+        function() grug.open { visualSelectionUsage = "operate-within-range" } end,
+        "Search and Replace (Within Selection)"
+      )
+    end,
+  },
 }
