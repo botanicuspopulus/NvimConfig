@@ -36,17 +36,13 @@ return {
 
       dap.set_log_level "DEBUG"
 
-      vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: Continue" })
-      vim.keymap.set("n", "<leader>dsv", dap.step_over, { desc = "Debug: Step Over" })
-      vim.keymap.set("n", "<leader>dsi", dap.step_into, { desc = "Debug: Step Into" })
-      vim.keymap.set("n", "<leader>dso", dap.step_out, { desc = "Debug: Step Out" })
-      vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
-      vim.keymap.set(
-        "n",
-        "<leader>dB",
-        function() dap.set_breakpoint(vim.fn.input "Breakpoint condition: ") end,
-        { desc = "Debug: Set Conditional Breakpoint" }
-      )
+      vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = "Visual" })
+
+      local vscode       = require('dap.ext.vscode')
+      local json         = require('plenary.json')
+      vscode.json_decode = function(str)
+        return vim.json.decode(json.json_strip_comments(str))
+      end
     end,
   },
   {
