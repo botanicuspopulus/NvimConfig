@@ -16,7 +16,7 @@ vim.opt.conceallevel = 2
 vim.opt.signcolumn = 'yes'
 vim.opt.pumblend = 10
 vim.opt.pumheight = 10
-vim.cmdheight = 0
+vim.opt.cmdheight = 0
 
 -- Performance
 vim.opt.history = 100
