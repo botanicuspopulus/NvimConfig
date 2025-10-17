@@ -8,7 +8,7 @@ return {
     keys = {
       {
         "<leader>p",
-        function() Snacks.picker.yanky() end,
+        function() require("snacks").picker.yanky() end,
         mode = { "n", "x" },
         desc = "Open Yank History",
       },
