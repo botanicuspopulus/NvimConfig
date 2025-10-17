@@ -1,32 +1,25 @@
 return {
   "kevinhwang91/nvim-hlslens",
-  event = "BufRead",
-  config = function()
-    require("hlslens").setup()
+  lazy = false,
+  config = function(opts)
+    local hlslens = require "hlslens"
+
+    hlslens.setup(opts)
 
     local kopts = { noremap = true, silent = true }
+    local keymap = vim.keymap.set
 
-    local keymap_n = function(key, action)
-      vim.keymap.set(
-        'n',
-        key,
-        action .. [[ <cmd>lua require('hlslens').start()<cr> ]],
-        kopts
-      )
+    local function mapkey(key)
+      keymap("n", key, function()
+        vim.cmd.normal { vim.v.count1 .. key, bang = true }
+        hlslens.start()
+      end, kopts)
     end
 
-    local keymap = {
-      ['n'] = "<cmd>execute('normal! " .. vim.v.count1 .. "n')<cr>",
-      ['N'] = "<cmd>execute('normal! " .. vim.v.count1 .. "N')<cr>",
-      ['*'] = '*',
-      ['#'] = '#',
-      ['g*'] = 'g*',
-      ['g#'] = 'g#',
-      ['<leader>cl'] = '<cmd>noh<cr>'
-    }
-
-    for key, action in pairs(keymap) do
-      keymap_n(key, action)
+    for _, key in ipairs { "n", "N", "*", "#", "g*", "g#" } do
+      mapkey(key)
     end
+
+    keymap("n", "<leader>cl", function() vim.cmd "noh" end, { desc = "Clear Highlight" })
   end,
 }
