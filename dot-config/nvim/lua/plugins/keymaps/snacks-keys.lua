@@ -209,15 +209,6 @@ local lsp_keys = {
   },
 }
 
--- Explorer
-local explorer_keys = {
-  {
-    "<leader>e",
-    function() require("snacks").explorer() end,
-    desc = "File Explorer",
-  },
-}
-
 -- Other
 local misc_keys = {
   {
@@ -254,7 +245,6 @@ for _, keybinds in ipairs {
   find_keys,
   git_keys,
   lsp_keys,
-  explorer_keys,
   misc_keys,
 } do
   extend_keybinds(keybinds)
@@ -263,7 +253,7 @@ end
 return {
   {
     "folke/snacks.nvim",
-    lazy = true,
+    lazy = false,
     keys = keys,
   },
 }
