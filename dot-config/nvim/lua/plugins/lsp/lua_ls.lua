@@ -1,5 +1,3 @@
-local ignore_files = {}
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -8,8 +6,8 @@ return {
         "lua",
         "luadoc",
         "luap",
-      }
-    }
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
@@ -27,7 +25,6 @@ return {
                 },
               },
               workspace = {
-                checkThirdParty = false,
                 ignoreDir = {
                   ".git",
                   "node_modules",
@@ -67,5 +64,5 @@ return {
         },
       },
     },
- },
- }
+  },
+}
