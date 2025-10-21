@@ -1,5 +1,16 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "python",
+        "rst",
+        "toml",
+        "ninja",
+      },
+    },
+  },
+  {
     "mfussenegger/nvim-dap-python",
     keys = {
       { "<leader>dPt", function() require("dap-python").test_method() end, desc = "Debug: Method", ft = "python" },
