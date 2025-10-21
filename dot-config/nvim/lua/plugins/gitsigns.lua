@@ -113,13 +113,13 @@ return {
           },
           {
             "n",
-            "<leader>qtb",
+            "<leader>gtb",
             gs.toggle_current_line_blame,
             "Git: Toggle Git Blame on Current Line",
           },
           {
             "n",
-            "<leader>qtw",
+            "<leader>gtw",
             gs.toggle_word_diff,
             "Git: Toggle Word Diff",
           },
