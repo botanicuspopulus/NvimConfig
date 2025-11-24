@@ -6,8 +6,6 @@ return {
 			{ "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>", desc = "Buffer: Delete Non-Pinned Buffers" },
 			{ "<leader>br", "<cmd>BufferLineCloseRight<CR>", desc = "Buffer: Delete Buffers to the Right" },
 			{ "<leader>bl", "<cmd>BufferLineCloseLeft<CR>", desc = "Buffer: Delete Buffers to the Left" },
-			{ "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Buffer: Previous Buffer" },
-			{ "<S-l>", "<cmd>BufferLineCycleNext<CR>", desc = "Buffer: Next Buffer" },
 			{ "[b", "<cmd>BufferLineCyclePrev<CR>", desc = "Buffer: Previous Buffer" },
 			{ "]b", "<cmd>BufferLineCycleNext<CR>", desc = "Buffer: Next Buffer" },
 			{ "[B", "<cmd>BufferLineMovePrev<CR>", desc = "Buffer: Move Buffer Previous" },
