@@ -5,8 +5,8 @@ return {
       ensure_installed = {
         "c",
         "cpp",
-      }
-    }
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
@@ -47,6 +47,7 @@ return {
               clangFileStatus = true,
             },
           },
+          on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = nil end,
         },
       },
     },
@@ -59,7 +60,7 @@ return {
       inlay_hints = {
         inline = false,
       },
-    }
+    },
   },
   {
     "mfussenegger/nvim-dap",
