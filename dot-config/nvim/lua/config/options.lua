@@ -93,14 +93,3 @@ vim.opt.wildignore = vim.opt.wildignore + { '*/node_modules/*', '*/.git/*', '*/_
 -- Line numbers
 vim.opt.number = true
 
-local grp = vim.api.nvim_create_augroup("number_toggle", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
-  group = grp,
-  callback = function() vim.wo.relativenumber = true end,
-})
-
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
-  group = grp,
-  callback = function() vim.wo.relativenumber = false end,
-})
-

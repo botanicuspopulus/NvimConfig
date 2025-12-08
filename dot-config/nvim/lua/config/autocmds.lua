@@ -91,7 +91,7 @@ autocmd("BufEnter", {
 
 autocmd("FileType", {
   pattern = { "python", "rst", "c", "cpp" },
-  command = "set colorcolumn=80",
+  command = "setlocal colorcolumn=80",
 })
 
 autocmd("FileType", {
@@ -107,3 +107,29 @@ autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+local ignore_ft = {
+  ["lazygit"] = true,
+  ["mason"] = true,
+  ["snacks_picker_list"] = true,
+}
+
+local grp = vim.api.nvim_create_augroup("number_toggle", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
+  group = grp,
+  callback = function()
+    if not ignore_ft[vim.bo.filetype] then
+      vim.wo.relativenumber = true
+    end
+  end
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
+  group = grp,
+  callback = function()
+    if not ignore_ft[vim.bo.filetype] then
+      vim.wo.relativenumber = false
+    end
+  end
+})
+
