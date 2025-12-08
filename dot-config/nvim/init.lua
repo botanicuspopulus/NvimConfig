@@ -65,8 +65,8 @@ local original_print = print
 
 print = function(...)
   local args = { ... }
-  local message = table.concat(vm.tbl_map(tostring, args), " ")
-  vim.notify(message, vim.loglevel.INFO, { title = "Print" })
+  local message = table.concat(vim.tbl_map(tostring, args), " ")
+  vim.notify(message, vim.log.levels.INFO, { title = "Print" })
 end
 
 vim.api.nvim_err_writeln = function(msg) vim.notify(msg, vim.loglevel.ERROR, { title = "Error" }) end
