@@ -4,6 +4,8 @@ return {
   config = function(opts)
     local hlslens = require "hlslens"
 
+    opts.calm_down = true
+
     hlslens.setup(opts)
 
     local kopts = { noremap = true, silent = true }
