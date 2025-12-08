@@ -110,6 +110,7 @@ autocmd("FileType", {
 
 local ignore_ft = {
   ["lazygit"] = true,
+  ["snacks_terminal"] = true,
   ["mason"] = true,
   ["snacks_picker_list"] = true,
 }
