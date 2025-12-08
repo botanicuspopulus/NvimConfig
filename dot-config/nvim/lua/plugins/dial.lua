@@ -108,16 +108,16 @@ return {
           augend.misc.alias.markdown_header,
         },
         json = { augend.semver.alias.semver },
-      },
-      lua = {
-        augend.constant.new {
-          elements = { "and", "or" },
-          word = true,
-          cyclic = true,
+        lua = {
+          augend.constant.new {
+            elements = { "and", "or" },
+            word = true,
+            cyclic = true,
+          },
         },
-      },
-      python = {
-        augend.constant.new { elements = { "and", "or" } },
+        python = {
+          augend.constant.new { elements = { "and", "or" } },
+        },
       },
     }
   end,
