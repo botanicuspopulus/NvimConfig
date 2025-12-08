@@ -58,5 +58,29 @@ require("lazy").setup {
       },
     },
   },
-	checker = { enabled = true },
-})
+  checker = { enabled = true },
+}
+
+local original_print = print
+
+print = function(...)
+  local args = { ... }
+  local message = table.concat(vm.tbl_map(tostring, args), " ")
+  vim.notify(message, vim.loglevel.INFO, { title = "Print" })
+end
+
+vim.api.nvim_err_writeln = function(msg) vim.notify(msg, vim.loglevel.ERROR, { title = "Error" }) end
+
+vim.api.nvim_err_writeln = function(msg)
+  if msg == "\n" then return end
+  vim.notify(msg, vim.log.levels.ERROR, { title = "Error" })
+end
+
+vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  local lvl = ({ "ERROR", "WARN", "INFO", "INFO" })[result.type]
+  vim.notify(result.message, lvl, {
+    title = client and client.name or "LSP",
+    timeout = 5000,
+  })
+end
