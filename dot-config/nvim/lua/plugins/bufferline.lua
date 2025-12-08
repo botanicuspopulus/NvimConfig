@@ -12,7 +12,7 @@ local groups = {
   items = {
     {
       name = "C / C++ / CMake",
-      highlight = { underline = true, sp = "cyan" },
+      highlight = { underline = false, sp = "cyan" },
       matcher = function(buf)
         local name, ext = split_name(buf)
         local match_options = { "c", "cpp", "h", "hpp", "cc", "cxx", "hh", "hxx", "cmake" }
@@ -21,7 +21,7 @@ local groups = {
     },
     {
       name = "Python",
-      highlight = { underline = true, sp = "cyan" },
+      highlight = { underline = false, sp = "cyan" },
       matcher = function(buf)
         local name, ext = split_name(buf)
         return ext == "py" or name == "pyproject.toml"
@@ -29,21 +29,21 @@ local groups = {
     },
     {
       name = "Lua",
-      highlight = { underline = true, sp = "red" },
+      highlight = { underline = false, sp = "red" },
       matcher = function(buf)
         return vim.fn.fnamemodify(buf.path, ":e") == "lua"
       end,
     },
     {
       name = "JSON",
-      highlight = { underline = true, sp = "yellow" },
+      highlight = { underline = false, sp = "yellow" },
       matcher = function(buf)
         return vim.fn.fnamemodify(buf.path, ":e") == "json"
       end
     },
     {
       name = "Docs",
-      highlight = { underline = true, sp = "magenta" },
+      highlight = { underline = false, sp = "magenta" },
       matcher = function(buf)
         local match_options = { "md", "markdown", "txt", "rst" }
         local name, ext = split_name(buf)
@@ -52,7 +52,7 @@ local groups = {
     },
     {
       name = "Shell",
-      highlight = { underline = true, sp = "orange" },
+      highlight = { underline = false, sp = "orange" },
       matcher = function(buf)
         local name, ext = split_name(buf)
         local match_options = { "sh", "bash", "zsh" }
@@ -61,7 +61,7 @@ local groups = {
     },
     {
       name = "Containers",
-      hihlight = { underline = true, sp = "red" },
+      hihlight = { underline = false, sp = "red" },
       matcher = function(buf)
         local name = vim.fn.fnamemodify(buf.path, ":t")
         local options = { "Dockerfile", "dockerfile", "Containerfile" }
