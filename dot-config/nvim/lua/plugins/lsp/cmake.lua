@@ -9,14 +9,14 @@ return {
       ensure_installed = { "cmakelang", "cmakelint" },
     }
   },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        neocmake = {},
-      }
-    }
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       neocmake = {},
+  --     }
+  --   }
+  -- },
   {
     "Civitasv/cmake-tools.nvim",
     lazy = true,

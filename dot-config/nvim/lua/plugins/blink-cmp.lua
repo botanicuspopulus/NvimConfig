@@ -95,7 +95,11 @@ return {
             local a_priority = source_priority[a.source_id]
             local b_priority = source_priority[b.source_id]
 
-            if a_priority ~= b_priority then return a_priority < b_priority end
+            if not a_priority or not b_priority or a_priority == b_priority then
+              return
+            end
+
+            return a_priority < b_priority
           end,
           "score",
           "sort_text",

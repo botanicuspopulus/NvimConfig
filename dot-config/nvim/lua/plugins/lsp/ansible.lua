@@ -5,12 +5,12 @@ return {
       ensure_installed = { "ansible-lint" },
     },
   },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        ansiblels = {},
-      },
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       ansiblels = {},
+  --     },
+  --   },
+  -- },
 }

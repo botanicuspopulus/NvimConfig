@@ -9,50 +9,6 @@ return {
     },
   },
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        clangd = {
-          {
-            keys = {
-              { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
-            },
-            root_markers = {
-              "compile_commands.json",
-              "compile_flags.txt",
-              "configure.ac",
-              "Makefile",
-              "configure.in",
-              "config.h.in",
-              "meson.build",
-              "meson_options.txt",
-              "build.ninja",
-              ".git",
-            },
-            capabilities = {
-              offsetEncoding = { "utf-16" },
-            },
-            cmd = {
-              "clangd",
-              "--background-index",
-              "--clang-tidy",
-              "--header-insertion=iwyu",
-              "--completion-style=detailed",
-              "--function-arg-placeholders",
-              "--fallback-style=llvm",
-            },
-            init_options = {
-              usePlaceHolders = true,
-              completeUnimported = true,
-              clangFileStatus = true,
-            },
-          },
-          on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = nil end,
-        },
-      },
-    },
-  },
-  {
     "p00f/clangd_extensions.nvim",
     lazy = true,
     config = function() end,
