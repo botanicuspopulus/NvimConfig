@@ -8,12 +8,18 @@ return {
     "less",
     "javascriptreact",
     "typescriptreact",
+    "svelte",
   },
   root_markers = { ".git" },
   init_options = {
-    includeLanguages = {},
+    includeLanguages = {
+      svelte = "html",
+    },
     excludeLanguages = {},
     extensionsPath = {},
-    preferences = {},
+    preferences = {
+      ["css.intUnit"] = "px",
+      ["css.floatUnit"] = "rem",
+    },
   },
 }
