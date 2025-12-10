@@ -21,7 +21,6 @@ return {
     run_on_start = true,
     start_delay = 3000,
     integrations = {
-      ["mason-null-ls"] = true,
       ["mason-nvim-dap"] = true,
     },
   },

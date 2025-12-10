@@ -1,18 +1,13 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "dockerfile" } },
-  },
-  {
     "mason-org/mason.nvim",
-    opts = { ensure_installed = { "hadolint", "yamllint" } },
+    opts = { ensure_installed = { "yamllint" } },
   },
   {
     "mfussenegger/nvim-lint",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       linters_by_ft = {
-        dockerfile = { "hadolint" },
         yaml = { "yamllint" },
       },
     },

@@ -152,6 +152,8 @@ vim.schedule(function()
   vim.lsp.enable('clangd')
   vim.lsp.enable('ruff')
   vim.lsp.enable('basedpyright')
+  vim.lsp.enable('cmake')
+  vim.lsp.enable('dockerls')
 end)
 
 local original_print = print

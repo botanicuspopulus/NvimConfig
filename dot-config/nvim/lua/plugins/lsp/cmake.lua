@@ -6,17 +6,9 @@ return {
   {
     "mason.nvim", 
     opts = {
-      ensure_installed = { "cmakelang", "cmakelint" },
+      ensure_installed = { "cmakelang", "neocmakelsp" },
     }
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     servers = {
-  --       neocmake = {},
-  --     }
-  --   }
-  -- },
   {
     "Civitasv/cmake-tools.nvim",
     lazy = true,
