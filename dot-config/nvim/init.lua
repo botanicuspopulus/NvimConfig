@@ -3,8 +3,8 @@ for _, source in ipairs {
   "config.options",
   "config.keymappings",
 } do
-local ok, fault = pcall(require, source)
-if not ok then vim.api.nvim_err_writeln("Failed to source " .. source .. "\n\n" .. fault) end
+  local ok, fault = pcall(require, source)
+  if not ok then vim.api.nvim_err_writeln("Failed to source " .. source .. "\n\n" .. fault) end
 end
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -61,7 +61,7 @@ require("lazy").setup {
   checker = { enabled = true },
 }
 
-vim.diagnostic.config({
+vim.diagnostic.config {
   underline = true,
   update_in_insert = false,
   virtual_text = {
@@ -69,9 +69,9 @@ vim.diagnostic.config({
     source = "if_many",
   },
   severity_sort = true,
-})
+}
 
-vim.lsp.config('*', {
+vim.lsp.config("*", {
   vim = {
     inlay_hints = {
       enabled = true,
@@ -82,11 +82,9 @@ vim.lsp.config('*', {
     },
     folds = {
       enabled = true,
-    }
+    },
   },
-  capabilities = vim.tbl_deep_extend('force',
-  require('blink.cmp').get_lsp_capabilities(),
-  {
+  capabilities = vim.tbl_deep_extend("force", require("blink.cmp").get_lsp_capabilities(), {
     workspace = {
       fileOperations = {
         didRename = true,
@@ -94,21 +92,6 @@ vim.lsp.config('*', {
       },
     },
   }),
-})
-
-vim.lsp.config("lua_ls", {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_dir = function(bufnr)
-    return vim.fs.root(bufnr, { ".luarc.json", ".luacheckrc", ".git" })
-  end,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-    }
-  }
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -136,7 +119,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "<space>lq", vim.diagnostic.setloclist, "LSP: Add Buffer Diagnostic to Location List" },
       { "<space>lwa", vim.lsp.buf.add_workspace_folder, "LSP: Add Workspace Folder" },
       { "<space>lwr", vim.lsp.buf.remove_workspace_folder, "LSP: Remove Workspace Folder" },
-      { "<space>lwl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "LSP: List Workspace Folders" },
+      {
+        "<space>lwl",
+        function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        "LSP: List Workspace Folders",
+      },
       { "<space>lr", vim.lsp.buf.rename, "LSP: Rename" },
       { "<space>lf", function() vim.lsp.buf.format { async = true } end, "LSP: Format Buffer" },
     }
@@ -148,12 +135,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.schedule(function()
-  vim.lsp.enable('lua_ls')
-  vim.lsp.enable('clangd')
-  vim.lsp.enable('ruff')
-  vim.lsp.enable('basedpyright')
-  vim.lsp.enable('cmake')
-  vim.lsp.enable('dockerls')
+  vim.lsp.enable "lua_ls"
+  vim.lsp.enable "clangd"
+  vim.lsp.enable "ruff"
+  vim.lsp.enable "basedpyright"
+  vim.lsp.enable "cmake"
+  vim.lsp.enable "dockerls"
+  vim.lsp.enable "stylua"
 end)
 
 local original_print = print
@@ -179,4 +167,3 @@ vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
     timeout = 5000,
   })
 end
-
