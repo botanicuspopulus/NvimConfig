@@ -136,12 +136,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.schedule(function()
   vim.lsp.enable "lua_ls"
+  vim.lsp.enable "stylua"
   vim.lsp.enable "clangd"
   vim.lsp.enable "ruff"
   vim.lsp.enable "basedpyright"
   vim.lsp.enable "cmake"
   vim.lsp.enable "dockerls"
-  vim.lsp.enable "stylua"
+  vim.lsp.enable "jsonls"
 end)
 
 local original_print = print

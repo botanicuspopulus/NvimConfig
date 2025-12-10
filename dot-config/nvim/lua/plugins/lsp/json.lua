@@ -4,6 +4,10 @@ return {
     opts = { ensure_installed = { "json5" } },
   },
   {
+    "mason-org/mason.nvim",
+    opts = { ensure_installed = { "json-lsp", "jsonlint" } },
+  },
+  {
     "b0o/SchemaStore.nvim",
     lazy = true,
     version = false,
