@@ -143,6 +143,8 @@ vim.schedule(function()
   vim.lsp.enable "cmake"
   vim.lsp.enable "dockerls"
   vim.lsp.enable "jsonls"
+  vim.lsp.enable "vtsls"
+  vim.lsp.enable "biome"
 end)
 
 local original_print = print
