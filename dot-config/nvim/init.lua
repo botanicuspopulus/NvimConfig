@@ -150,6 +150,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.schedule(function()
   vim.lsp.enable('lua_ls')
   vim.lsp.enable('clangd')
+  vim.lsp.enable('ruff')
+  vim.lsp.enable('basedpyright')
 end)
 
 local original_print = print
