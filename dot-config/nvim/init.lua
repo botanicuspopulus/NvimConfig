@@ -145,6 +145,9 @@ vim.schedule(function()
   vim.lsp.enable "jsonls"
   vim.lsp.enable "vtsls"
   vim.lsp.enable "biome"
+  vim.lsp.enable "htmlls"
+  vim.lsp.enable "cssls"
+  vim.lsp.enable "emmet_ls"
 end)
 
 local original_print = print
