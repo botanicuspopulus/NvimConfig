@@ -149,6 +149,7 @@ vim.schedule(function()
   vim.lsp.enable "cssls"
   vim.lsp.enable "emmet_ls"
   vim.lsp.enable "svelte"
+  vim.lsp.enable "marksman"
 end)
 
 local original_print = print
