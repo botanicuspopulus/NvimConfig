@@ -160,8 +160,6 @@ print = function(...)
   vim.notify(message, vim.log.levels.INFO, { title = "Print" })
 end
 
-vim.api.nvim_err_writeln = function(msg) vim.notify(msg, vim.loglevel.ERROR, { title = "Error" }) end
-
 vim.api.nvim_err_writeln = function(msg)
   if msg == "\n" then return end
   vim.notify(msg, vim.log.levels.ERROR, { title = "Error" })
