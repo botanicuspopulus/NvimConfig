@@ -62,12 +62,12 @@ local find_keys = {
     desc = "Find: Command History",
   },
   {
-    "<leader>f:",
+    find_prefix .. ":",
     function() require("snacks").picker.commands() end,
     desc = "Find: Commands",
   },
   {
-    "<leader>f/",
+    find_prefix .. "/",
     function() require("snacks").picker.grep() end,
     desc = "Find: Grep",
   },
@@ -123,7 +123,7 @@ local find_keys = {
     desc = "Find: Marks",
   },
   {
-    "<leader>f@",
+    find_prefix .. "@",
     function() require("snacks").picker.registers() end,
     desc = "Find: Registers",
   },
@@ -146,6 +146,11 @@ local find_keys = {
     find_prefix .. "i",
     function() require("snacks").picker.icons() end,
     desc = "Find: Icons",
+  },
+  {
+    find_prefix .. ".",
+    function() require("snacks").picker.resume() end,
+    desc = "Resume (Previous)",
   },
 }
 
