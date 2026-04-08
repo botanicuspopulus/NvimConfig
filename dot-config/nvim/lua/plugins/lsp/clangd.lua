@@ -64,7 +64,7 @@ return {
   {
     "mason-org/mason.nvim",
     opts = {
-      ensure_installed = { "codelldb" },
+      ensure_installed = { "codelldb", "clang-format" },
     },
   },
 }

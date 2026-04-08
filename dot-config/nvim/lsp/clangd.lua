@@ -25,6 +25,7 @@ return {
     "--completion-style=detailed",
     "--function-arg-placeholders",
     "--fallback-style=llvm",
+    "--all-scopes-completion",
   },
   init_options = {
     usePlaceHolders = true,

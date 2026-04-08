@@ -40,7 +40,7 @@ return {
       },
       completion = {
         accept = {
-          auto_brackets = { enabled = true },
+          auto_brackets = { enabled = true, blocked_filetypes = { "cpp", "c", "cuda" } },
         },
         menu = {
           draw = {
@@ -115,6 +115,13 @@ return {
             max_items = 10,
             async = true,
             score_offset = 10,
+            override = {
+              get_trigger_characters = function(self)
+                local chars = self:get_trigger_characters()
+                vim.list_extend(chars, { "<", "," })
+                return chars
+              end,
+            },
             transform_items = function(_, items)
               return vim.tbl_filter(function(item) return item.deprecated ~= true end, items)
             end,
