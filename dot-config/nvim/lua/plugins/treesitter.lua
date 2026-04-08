@@ -1,11 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "VeryLazy" },
-    cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+    branch = "main",
     build = ":TSUpdate",
-    opts = {
-      ensure_installed = {
+    lazy = false,
+    config = function()
+      require("nvim-treesitter").setup {
+        install_dir = vim.fn.stdpath "data" .. "/treesitter",
+      }
+
+      require("nvim-treesitter").install {
         "bash",
         "diff",
         "html",
@@ -15,16 +19,41 @@ return {
         "vimdoc",
         "xml",
         "yaml",
-      },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = { enable = true },
-      folds = { enable = true },
-      config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
-    },
+        "c",
+        "cpp",
+        "cuda",
+        "cmake",
+        "dockerfile",
+        "git_config",
+        "gitcommit",
+        "git_rebase",
+        "gitignore",
+        "gitattributes",
+        "json5",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "rst",
+        "toml",
+        "ninja",
+        "bibtex",
+        "latex",
+        "javascript",
+        "jsdoc",
+        "json",
+        "jsonc",
+        "tsx",
+        "typescript",
+      }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter_highlight", { clear = true }),
+        callback = function(ev) pcall(vim.treesitter.start, ev.buf) end,
+      })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -103,7 +132,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    after = "nvim-treesitter",
+    dependencies = "nvim-treesitter",
     config = function()
       require("treesitter-context").setup {
         enable = true,

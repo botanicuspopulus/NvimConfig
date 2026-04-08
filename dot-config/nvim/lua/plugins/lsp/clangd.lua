@@ -1,20 +1,23 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "c",
-        "cpp",
-      },
-    },
-  },
-  {
     "p00f/clangd_extensions.nvim",
     lazy = true,
     config = function() end,
     opts = {
       inlay_hints = {
         inline = false,
+        ast = {
+          role_icons = {
+            type = "",
+            declaration = "",
+            expression = "󰊕",
+            specifier = "",
+            statement = "",
+            ["template argument"] = "",
+          },
+        },
+        memory_usage = { border = "rounded" },
+        symbol_info = { border = "rounded" },
       },
     },
   },
@@ -38,11 +41,11 @@ return {
         }
       end
 
-      for _, lang in pairs { "c", "cpp" } do
+      for _, lang in pairs { "c", "cpp", "cuda" } do
         dap.configurations[lang] = {
           {
             type = "codelldb",
-            request = "Launch",
+            request = "launch",
             name = "Launch file",
             program = function() return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file") end,
             cwd = "${workspaceFolder}",

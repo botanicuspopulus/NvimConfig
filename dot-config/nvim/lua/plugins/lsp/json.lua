@@ -1,9 +1,5 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "json5" } },
-  },
-  {
     "mason-org/mason.nvim",
     opts = { ensure_installed = { "json-lsp", "jsonlint" } },
   },
