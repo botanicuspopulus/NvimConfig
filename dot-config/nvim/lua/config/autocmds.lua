@@ -119,19 +119,15 @@ local grp = vim.api.nvim_create_augroup("number_toggle", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
   group = grp,
   callback = function()
-    if not ignore_ft[vim.bo.filetype] then
-      vim.wo.relativenumber = true
-    end
-  end
+    if not ignore_ft[vim.bo.filetype] then vim.wo.relativenumber = true end
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
   group = grp,
   callback = function()
-    if not ignore_ft[vim.bo.filetype] then
-      vim.wo.relativenumber = false
-    end
-  end
+    if not ignore_ft[vim.bo.filetype] then vim.wo.relativenumber = false end
+  end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
