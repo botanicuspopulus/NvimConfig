@@ -17,12 +17,23 @@ return {
           vim.opt_local.syntax = "OFF"
 
           local buffer = vim.b[ctx.buf]
-          if buffer.ts_highlight then
-            vim.treesitter.stop(ctx.buf)
-          end
+          if buffer.ts_highlight then vim.treesitter.stop(ctx.buf) end
         end,
       },
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        sources = {
+          explorer = {
+            win = {
+              list = {
+                keys = {
+                  ["O"] = { { "pick_win", "jump" }, mode = "n" },
+                },
+              },
+            },
+          },
+        },
+      },
       indent = {
         enabled = true,
         only_scope = true,
