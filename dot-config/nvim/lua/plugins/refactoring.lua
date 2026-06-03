@@ -5,6 +5,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "lewis6991/async.nvim",
     },
     keys = {
       { "<leader>r", "", desc = "+refactor", mode = { "n", "x" } },
@@ -37,39 +38,39 @@ return {
       },
       {
         "<leader>rf",
-        function() return require("refactoring").refactor("Extract Function") end,
+        function() return require("refactoring").refactor "Extract Function" end,
         mode = { "n", "x" },
         desc = "Refactor: Extract Function",
         expr = true,
       },
       {
         "<leader>rF",
-        function() return require("refactoring").refactor("Extract Function to File") end,
+        function() return require("refactoring").refactor "Extract Function to File" end,
         mode = { "n", "x" },
         desc = "Refactor: Extract Function to File",
         expr = true,
       },
       {
         "<leader>rx",
-        function() return require("refactoring").refactor("Extract Variable") end,
+        function() return require("refactoring").refactor "Extract Variable" end,
         mode = { "n", "x" },
         desc = "Refactor: Extract Variable",
         expr = true,
       },
       {
         "<leader>rp",
-        function() return require("refactoring").debug.printf({ below = false }) end,
+        function() return require("refactoring").debug.printf { below = false } end,
         mode = { "n", "x" },
         desc = "Refactor: Debug Print",
       },
       {
         "<leader>rP",
-        function() return require("refactoring").debug.print_var({ normal = true }) end,
+        function() return require("refactoring").debug.print_var { normal = true } end,
         desc = "Refactor: Debug Print Variable",
       },
       {
         "<leader>rc",
-        function() return require("refactoring").debug.cleanup({}) end,
+        function() return require("refactoring").debug.cleanup {} end,
         desc = "Refactor: Debug Cleanup",
       },
     },
@@ -96,8 +97,6 @@ return {
       print_var_statements = {},
       show_success_message = true,
     },
-    config = function(_, opts)
-      require("refactoring").setup(opts)
-    end,
+    config = function(_, opts) require("refactoring").setup(opts) end,
   },
 }
