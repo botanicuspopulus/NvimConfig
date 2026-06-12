@@ -136,3 +136,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and client.name == "clangd" then client.server_capabilities.semanticTokensProvider = nil end
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp", "h", "hpp", "cu" },
+  callback = function()
+    vim.bo.expandtab = true
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.softtabstop = 4
+  end,
+})
