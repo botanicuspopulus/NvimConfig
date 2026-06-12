@@ -44,7 +44,6 @@ return {
         "javascript",
         "jsdoc",
         "json",
-        "jsonc",
         "tsx",
         "typescript",
       }
