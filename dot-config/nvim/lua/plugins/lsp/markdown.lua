@@ -8,23 +8,19 @@ return {
       },
     },
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     servers = {
-  --       marksman = {},
-  --     },
-  --   },
-  -- },
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    "selimacerbas/markdown-preview.nvim",
+    dependencies = { "selimacerbas/live-server.nvim" },
     ft = { "markdown" },
-    build = function()
-      require("lazy").load { plugins = { "markdown-preview.nvim" } }
-      vim.fn["mkdp#util#install"]()
+    config = function()
+      require("markdown_preview").setup {
+        instance_mode = "takeover",
+        port = 0,
+        open_browser = true,
+        debounce_ms = 300,
+        browser = "firefox",
+      }
     end,
-    config = function() vim.cmd [[ do FileType ]] end,
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
