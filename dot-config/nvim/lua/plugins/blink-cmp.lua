@@ -1,13 +1,3 @@
-local source_priority = {
-  lsp = 1,
-  snippets = 2,
-  path = 3,
-  buffer = 4,
-  ripgrep = 5,
-  datword = 6,
-  nerdfont = 7,
-}
-
 return {
   {
     "saghen/blink.cmp",
@@ -191,8 +181,10 @@ return {
       },
 
       keymap = {
-        preset = "enter",
-        ["<C-y>"] = { "select_and_accept" },
+        preset = "super-tab",
+        ["<C-j>"] = { "snippet_forward", "fallback" },
+        ["<C-k>"] = { "snippet_backward", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
       },
     },
     config = function(_, opts)
