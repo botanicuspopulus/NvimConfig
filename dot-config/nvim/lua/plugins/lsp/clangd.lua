@@ -5,7 +5,8 @@ return {
     config = function() end,
     opts = {
       inlay_hints = {
-        inline = false,
+        inline = true,
+        only_current_line = false,
         ast = {
           role_icons = {
             type = "",
