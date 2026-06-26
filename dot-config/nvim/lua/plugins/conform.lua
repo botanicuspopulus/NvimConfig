@@ -2,6 +2,12 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
+      formatters_by_ft = {
+        cpp = { "clang_format" },
+        c = { "clang_format" },
+        cuda = { "clang_format" },
+        cmake = { "cmake_format" },
+      },
       format_on_save = function(bufnr)
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
 
@@ -10,6 +16,11 @@ return {
           lsp_format = "fallback",
         }
       end,
+    },
+    formatters = {
+      cmake_format = {
+        prepend_arguments = { "--config-file", ".cmake-format.yaml" },
+      },
     },
     config = function(_, opts)
       require("conform").setup(opts)
