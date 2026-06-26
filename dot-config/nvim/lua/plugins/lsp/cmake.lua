@@ -2,7 +2,7 @@ return {
   {
     "mason.nvim",
     opts = {
-      ensure_installed = { "neocmakelsp" },
+      ensure_installed = { "neocmakelsp", "cmakelang" },
     },
   },
   {
