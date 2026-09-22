@@ -182,6 +182,13 @@ return {
 
       keymap = {
         preset = "super-tab",
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then return cmp.snippet_forward() end
+          end,
+          "select_next",
+          "fallback",
+        },
         ["<C-j>"] = { "snippet_forward", "fallback" },
         ["<C-k>"] = { "snippet_backward", "fallback" },
         ["<CR>"] = { "accept", "fallback" },

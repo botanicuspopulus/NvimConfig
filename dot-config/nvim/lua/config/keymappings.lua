@@ -6,8 +6,10 @@ if fd then
     local keymaps = require(source)
 
     for _, keymap in ipairs(keymaps) do
-      vim.keymap.set(unpack(keymap)) 
+      vim.keymap.set(unpack(keymap))
     end
-
   end
 end
+
+vim.keymap.del({ "i", "s" }, "<Tab>")
+vim.keymap.del({ "i", "s" }, "<S-Tab>")
