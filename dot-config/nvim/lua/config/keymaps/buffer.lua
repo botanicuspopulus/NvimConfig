@@ -10,7 +10,7 @@ return {
   {
     "n",
     buffer_prefix .. "o",
-    function() require("snacks").bufdelete() end,
+    function() require("snacks").bufdelete.other() end,
     { desc = "Buffer: Delete Others" },
   },
   {

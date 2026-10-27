@@ -20,8 +20,8 @@ autocmd({ "VimResized" }, {
   end,
 })
 
--- Remove whitespace on save
-autocmd("BufWritePre", {
+-- Highlight on yank
+autocmd("TextYankPost", {
   group = augroup "highlight_yank",
   callback = function() (vim.hl or vim.highlight).on_yank() end,
 })
