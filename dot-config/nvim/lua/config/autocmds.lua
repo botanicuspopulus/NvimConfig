@@ -83,20 +83,15 @@ autocmd({ 'BufWritePre' }, {
   end,
 })
 
--- Don't autocomment new lines
-autocmd("BufEnter", {
-  pattern = "",
-  command = "set fo-=c fo-=r fo-=o",
+-- Don't autocomment new lines (runs after ftplugins, which reset formatoptions)
+autocmd("FileType", {
+  group = augroup "formatoptions",
+  callback = function() vim.opt_local.formatoptions:remove { "c", "r", "o" } end,
 })
 
 autocmd("FileType", {
   pattern = { "python", "rst", "c", "cpp" },
   command = "setlocal colorcolumn=80",
-})
-
-autocmd("FileType", {
-  pattern = { "xml", "html", "xhtml", "css", "scss", "javascript", "typescript", "yaml", "lua" },
-  command = "setlocal shiftwidth=2 tabstop=2",
 })
 
 autocmd("FileType", {
@@ -131,7 +126,7 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp", "h", "hpp", "cu" },
+  pattern = { "c", "cpp", "cuda" },
   callback = function()
     vim.bo.expandtab = true
     vim.bo.shiftwidth = 4

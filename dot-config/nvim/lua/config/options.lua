@@ -11,7 +11,6 @@ vim.opt.linebreak = true
 vim.opt.wrap = false
 vim.opt.winminwidth = 5
 vim.opt.confirm = true
-vim.opt.lazyredraw = true
 vim.opt.conceallevel = 2
 vim.opt.signcolumn = 'yes'
 vim.opt.pumblend = 10
@@ -36,11 +35,8 @@ vim.g.maplocalleader = "\\"
 
 -- General
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
-vim.opt.backspace = { 'eol', 'start', 'indent' }
-vim.opt.fileencoding = 'utf-8'
 
 -- Core indentation options
-vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
@@ -68,12 +64,8 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.opt.undolevels = 10000
 vim.opt.undoreload = 10000
-
--- Formatting
-vim.opt.formatoptions = 'jcrnoqlnt'
 
 -- Completion
 vim.opt.completeopt = { 'menu','menuone','noselect' }
@@ -86,8 +78,6 @@ vim.opt.grepformat = '%f:%l:%c:%m'
 vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.incsearch = true
-vim.opt.wildmenu = true
 vim.opt.wildignore = vim.opt.wildignore + { '*/node_modules/*', '*/.git/*', '*/__pycache__/*', '*/build/*' }
 
 -- Line numbers

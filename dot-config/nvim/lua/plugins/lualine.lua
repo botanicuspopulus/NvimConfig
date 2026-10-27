@@ -28,8 +28,6 @@ return {
 							"FileChangedShellPost",
 							"VimResized",
 							"Filetype",
-							"CursorMoved",
-							"CursorMovedI",
 							"ModeChanged",
 						},
 					},
