@@ -30,16 +30,12 @@ local groups = {
     {
       name = "Lua",
       highlight = { underline = false, sp = "red" },
-      matcher = function(buf)
-        return vim.fn.fnamemodify(buf.path, ":e") == "lua"
-      end,
+      matcher = function(buf) return vim.fn.fnamemodify(buf.path, ":e") == "lua" end,
     },
     {
       name = "JSON",
       highlight = { underline = false, sp = "yellow" },
-      matcher = function(buf)
-        return vim.fn.fnamemodify(buf.path, ":e") == "json"
-      end
+      matcher = function(buf) return vim.fn.fnamemodify(buf.path, ":e") == "json" end,
     },
     {
       name = "Docs",
@@ -56,7 +52,7 @@ local groups = {
       matcher = function(buf)
         local name, ext = split_name(buf)
         local match_options = { "sh", "bash", "zsh" }
-        return vim.tbl_contains(match_options, ext) or name:match("^.?%rc")
+        return vim.tbl_contains(match_options, ext) or name:match "^.?%rc"
       end,
     },
     {
@@ -67,7 +63,7 @@ local groups = {
         local options = { "Dockerfile", "dockerfile", "Containerfile" }
         return vim.tbl_contains(options, name)
       end,
-    }
+    },
   },
 }
 

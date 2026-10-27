@@ -5,7 +5,5 @@ return {
   init_options = {
     settings = { args = {} },
   },
-  on_attach = function(client, bufnr)
-    client.server_capabilities.hoverProvider = false
-  end,
+  on_attach = function(client, bufnr) client.server_capabilities.hoverProvider = false end,
 }

@@ -5,8 +5,8 @@ return {
     {
       "<leader>cp",
       ft = "markdown",
-      function() vim.cmd("MarkdownPreviewToggle") end,
+      function() vim.cmd "MarkdownPreviewToggle" end,
       desc = "Markdown Preview",
-    }
-  }
+    },
+  },
 }

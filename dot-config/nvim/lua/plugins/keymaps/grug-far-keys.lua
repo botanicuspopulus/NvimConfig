@@ -52,15 +52,14 @@ return {
       },
       {
         prefix .. "w",
-        function() 
+        function()
           local current_word = vim.fn.expand "<cword>"
 
           if current_word ~= "" then
-            grug_open { transient = true, prefills = { search = vim.fn.expand "<cword>" } } 
+            grug_open { transient = true, prefills = { search = vim.fn.expand "<cword>" } }
           else
             vim.notify("No word under cursor", vim.log.levels.WARN, { title = "Grug-far" })
           end
-
         end,
         desc = "Search/Replace (Word)",
         mode = { "n" },
@@ -81,5 +80,5 @@ return {
         mode = { "n", "x" },
       },
     },
-  }
+  },
 }

@@ -16,7 +16,7 @@ return {
   {
     "n",
     buffer_prefix .. "D",
-    function() vim.cmd(":bd") end,
+    function() vim.cmd ":bd" end,
     { desc = "Buffer: Delete Buffer and Window" },
   },
 }

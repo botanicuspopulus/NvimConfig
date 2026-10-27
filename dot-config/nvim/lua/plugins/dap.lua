@@ -43,13 +43,11 @@ return {
     config = function()
       local dap = require "dap"
 
-      vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = "Visual" })
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-      local vscode       = require('dap.ext.vscode')
-      local json         = require('plenary.json')
-      vscode.json_decode = function(str)
-        return vim.json.decode(json.json_strip_comments(str))
-      end
+      local vscode = require "dap.ext.vscode"
+      local json = require "plenary.json"
+      vscode.json_decode = function(str) return vim.json.decode(json.json_strip_comments(str)) end
     end,
   },
   {

@@ -2,7 +2,7 @@
 vim.opt.termguicolors = true
 vim.opt.sidescrolloff = 8
 vim.opt.scrolloff = 4
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.laststatus = 3
 vim.opt.cursorline = true
@@ -12,7 +12,7 @@ vim.opt.wrap = false
 vim.opt.winminwidth = 5
 vim.opt.confirm = true
 vim.opt.conceallevel = 2
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 vim.opt.pumblend = 10
 vim.opt.pumheight = 10
 vim.opt.cmdheight = 0
@@ -25,7 +25,7 @@ vim.opt.ttimeoutlen = 10
 vim.opt.updatetime = 100
 
 -- Splitting
-vim.opt.splitkeep = 'screen'
+vim.opt.splitkeep = "screen"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
@@ -46,18 +46,18 @@ vim.opt.shiftround = true
 
 -- Line Folding
 vim.opt.fillchars = {
-  foldopen = ' ',
-  foldclose = '>',
-  fold = ' ',
-  foldsep = ' ',
-  diff = '/',
-  eob = ' ',
+  foldopen = " ",
+  foldclose = ">",
+  fold = " ",
+  foldsep = " ",
+  diff = "/",
+  eob = " ",
 }
 
 vim.opt.foldlevel = 99
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldtext = ''
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = ""
 
 -- Undo
 vim.opt.swapfile = false
@@ -68,18 +68,17 @@ vim.opt.undolevels = 10000
 vim.opt.undoreload = 10000
 
 -- Completion
-vim.opt.completeopt = { 'menu','menuone','noselect' }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess = vim.opt.shortmess + {
-  c = true
+  c = true,
 } -- Hide all the completion messages
 
 -- Search
-vim.opt.grepformat = '%f:%l:%c:%m'
-vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "rg --vimgrep"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.wildignore = vim.opt.wildignore + { '*/node_modules/*', '*/.git/*', '*/__pycache__/*', '*/build/*' }
+vim.opt.wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/__pycache__/*", "*/build/*" }
 
 -- Line numbers
 vim.opt.number = true
-

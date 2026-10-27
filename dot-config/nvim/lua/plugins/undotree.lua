@@ -1,4 +1,4 @@
 return {
-  'jiaoshijie/undotree',
+  "jiaoshijie/undotree",
   opts = {},
 }

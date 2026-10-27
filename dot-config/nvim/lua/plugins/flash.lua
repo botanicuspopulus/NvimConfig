@@ -16,7 +16,7 @@ return {
           multi_line = false,
           highlight = {
             backdrop = false,
-          }
+          },
         },
       },
     },
