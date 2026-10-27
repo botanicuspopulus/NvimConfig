@@ -2,6 +2,7 @@ local api_key = 'cmd:rbw get "openrouter.ai" --field "LLMAssist API Key"'
 
 return {
   "olimorris/codecompanion.nvim",
+  cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionCmd" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",

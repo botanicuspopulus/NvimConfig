@@ -37,6 +37,8 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
       "mason-org/mason.nvim",
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
     },
     config = function()
       local dap = require "dap"
@@ -52,6 +54,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    lazy = true,
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function()
       local dap = require "dap"
@@ -138,6 +141,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    lazy = true,
     dependencies = { "mfussenegger/nvim-dap" },
     opts = {},
   },

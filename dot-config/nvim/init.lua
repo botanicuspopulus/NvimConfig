@@ -20,7 +20,7 @@ require("lazy").setup {
   spec = {
     { import = "plugins" },
     { import = "plugins.keymaps" },
-    { import = "plugins.lsp" },
+    { import = "plugins.lang" },
   },
   install = { colorscheme = { "catppuccin-macchiato" } },
   performance = {
