@@ -6,7 +6,7 @@ return {
     "typescript",
     "typescriptreact",
   },
-  root_markser = {
+  root_markers = {
     ".git",
     "tsconfig.json",
     "jsconfig.json",

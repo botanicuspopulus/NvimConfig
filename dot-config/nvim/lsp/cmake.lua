@@ -1,8 +1,7 @@
 return {
   cmd = { "neocmakelsp", "stdio" },
   filetypes = { "cmake" },
-  root_dir = function(fname) return vim.fs.root(fname, { "CMakeLists.txt", ".git" }) end,
-  single_file_support = true,
+  root_markers = { "CMakeLists.txt", ".git" },
   capabilities = {
     workspace = {
       didChangeWatchedFiles = {

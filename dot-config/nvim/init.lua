@@ -72,18 +72,6 @@ vim.diagnostic.config {
 }
 
 vim.lsp.config("*", {
-  vim = {
-    inlay_hints = {
-      enabled = true,
-      exclude = { "vue" },
-    },
-    codelens = {
-      enabled = false,
-    },
-    folds = {
-      enabled = true,
-    },
-  },
   capabilities = vim.tbl_deep_extend("force", require("blink.cmp").get_lsp_capabilities(), {
     workspace = {
       fileOperations = {
@@ -99,6 +87,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client and client:supports_method "textDocument/inlayHint" then
+      vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+    end
 
     local function keymap_n(keybind, action, desc)
       vim.keymap.set("n", keybind, action, { desc = desc, buffer = ev.buf })

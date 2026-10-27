@@ -1,5 +1,5 @@
 return {
-  cmd = { "svelte-language-server", "--stdio" },
+  cmd = { "svelteserver", "--stdio" },
   filetypes = { "svelte" },
   root_markers = { ".git", "svelte.config.js", "svelte.config.ts", "package.json" },
   init_options = {
