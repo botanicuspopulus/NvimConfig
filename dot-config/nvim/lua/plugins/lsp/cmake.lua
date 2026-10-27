@@ -1,6 +1,6 @@
 return {
   {
-    "mason.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = { "neocmakelsp", "cmakelang" },
     },

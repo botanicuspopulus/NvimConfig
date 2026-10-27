@@ -63,7 +63,7 @@ return {
     end,
   },
   {
-    "mason-org/mason.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = { "codelldb", "clang-format" },
     },

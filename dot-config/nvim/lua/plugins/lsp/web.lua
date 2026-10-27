@@ -1,6 +1,6 @@
 return {
   {
-    "mason-org/mason.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
         "biome",
@@ -10,6 +10,7 @@ return {
         "prettier",
         "stylelint",
         "emmet-language-server",
+        "htmlhint",
       },
     },
   },
@@ -17,7 +18,7 @@ return {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
-        html = { "htmlhint" },
+        html = {  },
         css = { "stylelint" },
       },
     },
