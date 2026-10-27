@@ -56,11 +56,7 @@ return {
         callback = function()
           _G.dd = function(...) require("snacks").debug.inspect(...) end
 
-          if vim.fn.has "nvim-0.11" == 1 then
-            vim._print = function(_, ...) dd(...) end
-          else
-            vim.print = _G.dd
-          end
+          vim._print = function(_, ...) dd(...) end
 
           require("snacks").toggle.option("spell", { name = "Spelling" }):map "<leader>us"
           require("snacks").toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"

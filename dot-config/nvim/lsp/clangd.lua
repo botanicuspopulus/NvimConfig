@@ -32,4 +32,5 @@ return {
     completeUnimported = true,
     clangFileStatus = true,
   },
+  on_attach = function(client) client.server_capabilities.semanticTokensProvider = nil end,
 }

@@ -13,21 +13,9 @@ return {
   },
   settings = {
     Lua = {
-      runtime = {
-        version = "LuaJIT",
-        path = vim.split(package.path, ";"),
-      },
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = {
-          vim.env.VIMRUNTIME,
-          "${3rd}/luv/library",
-          "${3rd}/busted/library",
-        },
-        checkThirdParty = false,
-      },
+      runtime = { version = "LuaJIT" },
+      -- Neovim runtime and plugin libraries are provided by lazydev.nvim
+      workspace = { checkThirdParty = false },
       telemetry = {
         enable = false,
       },

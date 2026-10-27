@@ -130,13 +130,6 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.name == "clangd" then client.server_capabilities.semanticTokensProvider = nil end
-  end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "c", "cpp", "h", "hpp", "cu" },
   callback = function()

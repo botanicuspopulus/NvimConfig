@@ -1,5 +1,3 @@
-local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
-
 return {
   cmd = { "biome", "lsp-proxy" },
   filetypes = {
@@ -10,7 +8,6 @@ return {
     "typescriptreact",
     "typescript.tsx",
   },
-  capabilities = blink_capabilities,
   init_options = {},
   -- Only attach in projects that have a biome config
   root_dir = function(bufnr, on_dir)

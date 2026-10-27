@@ -4,7 +4,7 @@ for _, source in ipairs {
   "config.keymappings",
 } do
   local ok, fault = pcall(require, source)
-  if not ok then vim.api.nvim_err_writeln("Failed to source " .. source .. "\n\n" .. fault) end
+  if not ok then vim.notify("Failed to source " .. source .. "\n\n" .. fault, vim.log.levels.ERROR) end
 end
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -101,24 +101,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "gD", vim.lsp.buf.declaration, "LSP: Go To Declaration" },
       { "gd", vim.lsp.buf.definition, "LSP: Go To Definition" },
       { "gy", vim.lsp.buf.type_definition, "LSP: Type Definition" },
-      { "gr", vim.lsp.buf.references, "LSP: References" },
-      { "gi", vim.lsp.buf.implementation, "LSP: Go To Implementation" },
-      { "K", vim.lsp.buf.hover, "LSP: Hover" },
+      -- Built in: grr references, gri implementation, grn rename, gra code action,
+      -- grt type definition, gO document symbols, K hover, [d/]d diagnostics
       { "<leader>ls", vim.lsp.buf.signature_help, "LSP: Open Signature Help" },
-      { "<space>ld", vim.diagnostic.open_float, "LSP: Show Diagnostic in Floating Window" },
-      { "[d", vim.diagnostic.goto_prev, "LSP: Go To Next Diagnostic" },
-      { "]d", vim.diagnostic.goto_next, "LSP: Go To Previous Diagnostic" },
-      { "<space>la", vim.lsp.buf.code_action, "LSP: Code Action" },
-      { "<space>lq", vim.diagnostic.setloclist, "LSP: Add Buffer Diagnostic to Location List" },
-      { "<space>lwa", vim.lsp.buf.add_workspace_folder, "LSP: Add Workspace Folder" },
-      { "<space>lwr", vim.lsp.buf.remove_workspace_folder, "LSP: Remove Workspace Folder" },
+      { "<leader>ld", vim.diagnostic.open_float, "LSP: Show Diagnostic in Floating Window" },
+      { "<leader>la", vim.lsp.buf.code_action, "LSP: Code Action" },
+      { "<leader>lq", vim.diagnostic.setloclist, "LSP: Add Buffer Diagnostic to Location List" },
+      { "<leader>lwa", vim.lsp.buf.add_workspace_folder, "LSP: Add Workspace Folder" },
+      { "<leader>lwr", vim.lsp.buf.remove_workspace_folder, "LSP: Remove Workspace Folder" },
       {
-        "<space>lwl",
-        function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        "<leader>lwl",
+        function() vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
         "LSP: List Workspace Folders",
       },
-      { "<space>lr", vim.lsp.buf.rename, "LSP: Rename" },
-      { "<space>lf", function() vim.lsp.buf.format { async = true } end, "LSP: Format Buffer" },
+      { "<leader>lr", vim.lsp.buf.rename, "LSP: Rename" },
+      { "<leader>lf", function() vim.lsp.buf.format { async = true } end, "LSP: Format Buffer" },
     }
 
     for _, keybind in ipairs(keys) do
@@ -127,42 +124,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.schedule(function()
-  vim.lsp.enable "luals"
-  vim.lsp.enable "stylua"
-  vim.lsp.enable "clangd"
-  vim.lsp.enable "ruff"
-  vim.lsp.enable "basedpyright"
-  vim.lsp.enable "cmake"
-  vim.lsp.enable "dockerls"
-  vim.lsp.enable "jsonls"
-  vim.lsp.enable "vtsls"
-  vim.lsp.enable "biome"
-  vim.lsp.enable "htmlls"
-  vim.lsp.enable "cssls"
-  vim.lsp.enable "emmet_ls"
-  vim.lsp.enable "svelte"
-  vim.lsp.enable "marksman"
-end)
-
-local original_print = print
-
-print = function(...)
-  local args = { ... }
-  local message = table.concat(vim.tbl_map(tostring, args), " ")
-  vim.notify(message, vim.log.levels.INFO, { title = "Print" })
-end
-
-vim.api.nvim_err_writeln = function(msg)
-  if msg == "\n" then return end
-  vim.notify(msg, vim.log.levels.ERROR, { title = "Error" })
-end
-
-vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
-  local client = vim.lsp.get_client_by_id(ctx.client_id)
-  local lvl = ({ "ERROR", "WARN", "INFO", "INFO" })[result.type]
-  vim.notify(result.message, lvl, {
-    title = client and client.name or "LSP",
-    timeout = 5000,
-  })
-end
+vim.lsp.enable {
+  "luals",
+  "stylua",
+  "clangd",
+  "ruff",
+  "basedpyright",
+  "cmake",
+  "dockerls",
+  "jsonls",
+  "vtsls",
+  "biome",
+  "htmlls",
+  "cssls",
+  "emmet_ls",
+  "svelte",
+  "marksman",
+}
