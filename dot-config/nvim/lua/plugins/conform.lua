@@ -16,10 +16,10 @@ return {
           lsp_format = "fallback",
         }
       end,
-    },
-    formatters = {
-      cmake_format = {
-        prepend_arguments = { "--config-file", ".cmake-format.yaml" },
+      formatters = {
+        cmake_format = {
+          prepend_arguments = { "--config-file", ".cmake-format.yaml" },
+        },
       },
     },
     config = function(_, opts)

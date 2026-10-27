@@ -9,7 +9,7 @@ return {
 					theme = "auto",
 					always_divide_middle = true,
 					always_show_tabline = false,
-					globalstatus = vim.opt.laststatus == 3,
+					globalstatus = vim.o.laststatus == 3,
 					disabled_filetypes = {
 						status_line = {},
 						winbar = {},

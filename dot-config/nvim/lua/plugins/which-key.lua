@@ -2,7 +2,7 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {},
+		opts = {
 		spec = {
 			{
 				mode = { "n", "v" },
@@ -32,6 +32,7 @@ return {
 					{ "z", group = "fold" },
 				},
 			},
+		},
 		},
 		keys = {
 			{

@@ -11,14 +11,17 @@ local function navigate(args)
   for _, win_id in ipairs(win_ids) do
     local win_bufnr = vim.api.nvim_win_get_buf(win_id)
 
-    if win_bufnr == buffer then wid = win_id end
-
-    if wid == nil then return end
-
-    vim.schedule(function()
-      if vim.api.nvim_win_is_valid(wid) then vim.api.nvim_set_current_win(wid) end
-    end)
+    if win_bufnr == buffer then
+      wid = win_id
+      break
+    end
   end
+
+  if wid == nil then return end
+
+  vim.schedule(function()
+    if vim.api.nvim_win_is_valid(wid) then vim.api.nvim_set_current_win(wid) end
+  end)
 end
 
 local function create_nav_options(name)
@@ -37,8 +40,6 @@ return {
     },
     config = function()
       local dap = require "dap"
-
-      dap.set_log_level "DEBUG"
 
       vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = "Visual" })
 
@@ -89,7 +90,7 @@ return {
         if layout_config == nil then error(string.format("bad name: %s", name)) end
 
         local uis = vim.api.nvim_list_uis()[1]
-        if uis ~= nil then layout_config.size = uis.width end
+        if uis ~= nil then layout_config.layout.size = uis.width end
 
         pcall(dapui.toggle, layout_config.index)
       end
@@ -137,5 +138,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "mfussenegger/nvim-dap" },
+    opts = {},
   },
 }

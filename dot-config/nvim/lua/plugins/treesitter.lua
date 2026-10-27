@@ -99,6 +99,20 @@ return {
       },
     },
     config = function(_, opts)
+      require("nvim-treesitter-textobjects").setup {
+        select = { lookahead = opts.select.lookahead },
+        move = { set_jumps = opts.move.set_jumps },
+      }
+
+      for key, query in pairs(vim.tbl_get(opts, "select", "keymaps") or {}) do
+        vim.keymap.set(
+          { "x", "o" },
+          key,
+          function() require("nvim-treesitter-textobjects.select").select_textobject(query, "textobjects") end,
+          { desc = "Select " .. query:gsub("@", "") }
+        )
+      end
+
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("nvim_treesitter_textobjects", { clear = true }),
         callback = function(ev)
@@ -127,6 +141,13 @@ return {
           end
         end,
       })
+
+      -- Buffers opened before VeryLazy missed the FileType event
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].filetype ~= "" then
+          vim.api.nvim_exec_autocmds("FileType", { group = "nvim_treesitter_textobjects", buffer = buf })
+        end
+      end
     end,
   },
   {

@@ -8,7 +8,7 @@ return {
         local gs = require "gitsigns"
 
         local function keymap(mode, l, r, desc, opts)
-          opts = {} or opts
+          opts = opts or {}
           opts.buffer = bufnr
           opts.desc = desc
           vim.keymap.set(mode, l, r, opts)
@@ -17,7 +17,7 @@ return {
         local keybinds = {
           {
             "n",
-            "]c",
+            "]h",
             function()
               if vim.wo.diff then
                 vim.cmd.normal { "]c", bang = true }
@@ -29,7 +29,7 @@ return {
           },
           {
             "n",
-            "[c",
+            "[h",
             function()
               if vim.wo.diff then
                 vim.cmd.normal { "[c", bang = true }

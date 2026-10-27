@@ -1,102 +1,66 @@
+local function refactor(name, suffix)
+  return function() return require("refactoring")[name]() .. (suffix or "") end
+end
+
+local function debug(name, opts, suffix)
+  return function() return require("refactoring.debug")[name](opts) .. (suffix or "") end
+end
+
 return {
   {
     "ThePrimeagen/refactoring.nvim",
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
       "lewis6991/async.nvim",
     },
     keys = {
       { "<leader>r", "", desc = "+refactor", mode = { "n", "x" } },
       {
         "<leader>rs",
-        pick,
+        function() require("refactoring").select_refactor() end,
         mode = { "n", "x" },
-        desc = "Refactor",
+        desc = "Refactor: Select",
       },
-      {
-        "<leader>ri",
-        function() return require("refactoring").refactor "Inline Variable" end,
-        mode = { "n", "x" },
-        desc = "Refactor: Inline Variable",
-        expr = true,
-      },
-      {
-        "<leader>rb",
-        function() return require("refactoring").refactor "Extract Block" end,
-        mode = { "n", "x" },
-        desc = "Refactor: Extract Block",
-        expr = true,
-      },
-      {
-        "<leader>rf",
-        function() return require("refactoring").refactor "Extract Block To File" end,
-        mode = { "n", "x" },
-        desc = "Refactor: Extract Block to File",
-        expr = true,
-      },
-      {
-        "<leader>rf",
-        function() return require("refactoring").refactor "Extract Function" end,
-        mode = { "n", "x" },
-        desc = "Refactor: Extract Function",
-        expr = true,
-      },
+      { "<leader>ri", refactor "inline_var", mode = { "n", "x" }, desc = "Refactor: Inline Variable", expr = true },
+      { "<leader>rI", refactor "inline_func", mode = { "n", "x" }, desc = "Refactor: Inline Function", expr = true },
+      { "<leader>rf", refactor "extract_func", mode = { "n", "x" }, desc = "Refactor: Extract Function", expr = true },
       {
         "<leader>rF",
-        function() return require("refactoring").refactor "Extract Function to File" end,
+        refactor "extract_func_to_file",
         mode = { "n", "x" },
         desc = "Refactor: Extract Function to File",
         expr = true,
       },
+      { "<leader>rx", refactor "extract_var", mode = { "n", "x" }, desc = "Refactor: Extract Variable", expr = true },
       {
-        "<leader>rx",
-        function() return require("refactoring").refactor "Extract Variable" end,
-        mode = { "n", "x" },
-        desc = "Refactor: Extract Variable",
+        "<leader>rp",
+        debug("print_loc", { output_location = "below" }),
+        desc = "Refactor: Debug Print Location",
         expr = true,
       },
       {
-        "<leader>rp",
-        function() return require("refactoring").debug.printf { below = false } end,
-        mode = { "n", "x" },
-        desc = "Refactor: Debug Print",
+        "<leader>rP",
+        debug("print_var", { output_location = "below" }, "iw"),
+        desc = "Refactor: Debug Print Variable",
+        expr = true,
       },
       {
         "<leader>rP",
-        function() return require("refactoring").debug.print_var { normal = true } end,
+        debug("print_var", { output_location = "below" }),
+        mode = "x",
         desc = "Refactor: Debug Print Variable",
+        expr = true,
       },
+      -- Operator: follow with a motion/textobject (e.g. `ip`, `G`) or use on a selection
       {
         "<leader>rc",
-        function() return require("refactoring").debug.cleanup {} end,
+        debug("cleanup", { restore_view = true }),
+        mode = { "n", "x" },
         desc = "Refactor: Debug Cleanup",
+        expr = true,
       },
     },
     opts = {
-      prompt_func_return_type = {
-        go = false,
-        java = false,
-        cpp = false,
-        c = false,
-        h = false,
-        hpp = false,
-        cxx = false,
-      },
-      prompt_func_param_type = {
-        go = false,
-        java = false,
-        cpp = false,
-        c = false,
-        h = false,
-        hpp = false,
-        cxx = false,
-      },
-      printf_statements = {},
-      print_var_statements = {},
       show_success_message = true,
     },
-    config = function(_, opts) require("refactoring").setup(opts) end,
   },
 }
