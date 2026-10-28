@@ -26,11 +26,12 @@ return {
     "--function-arg-placeholders",
     "--fallback-style=llvm",
     "--all-scopes-completion",
+    "--completion-parse=auto",
+    "--pch-storage=memory",
+    "-j=8",
   },
   init_options = {
-    usePlaceHolders = true,
-    completeUnimported = true,
-    clangFileStatus = true,
+    clangdFileStatus = true,
   },
   on_attach = function(client) client.server_capabilities.semanticTokensProvider = nil end,
 }

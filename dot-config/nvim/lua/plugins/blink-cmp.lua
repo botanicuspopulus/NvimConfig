@@ -84,6 +84,7 @@ return {
       fuzzy = {
         implementation = "prefer_rust_with_warning",
         sorts = {
+          "exact",
           "score",
           "sort_text",
         },
@@ -91,24 +92,26 @@ return {
       sources = {
         compat = {},
         default = function()
-          local ft = vim.bo.filetype
-          if ft == "cpp" or ft == "c" or ft == "cuda" or ft == "cmake" or ft == "lua" or ft == "python" then
-            return { "lsp", "snippets", "path", "buffer", "ripgrep" }
-          end
+          local sources = { "lsp", "snippets", "path", "buffer", "ripgrep" }
+          -- Dictionary words and nerd font glyphs are only useful when writing prose
+          local prose = { markdown = true, text = true, gitcommit = true, tex = true, rst = true }
+          if prose[vim.bo.filetype] then vim.list_extend(sources, { "datword", "nerdfont" }) end
 
-          return { "lsp", "snippets", "path", "buffer", "ripgrep", "datword", "nerdfont" }
+          return sources
         end,
         min_keyword_length = function() return vim.bo.filetype == "markdown" and 2 or 0 end,
         providers = {
           lsp = {
             timeout_ms = 500,
-            max_items = 10,
+            max_items = 50,
             async = true,
             score_offset = 10,
             override = {
               get_trigger_characters = function(self)
                 local chars = self:get_trigger_characters()
-                vim.list_extend(chars, { "<", "," })
+                -- Trigger on template brackets, but not on every comparison in other languages
+                local ft = vim.bo.filetype
+                if ft == "cpp" or ft == "cuda" then table.insert(chars, "<") end
                 return chars
               end,
             },

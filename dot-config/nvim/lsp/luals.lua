@@ -16,6 +16,8 @@ return {
       runtime = { version = "LuaJIT" },
       -- Neovim runtime and plugin libraries are provided by lazydev.nvim
       workspace = { checkThirdParty = false },
+      completion = { callSnippet = "Replace" },
+      hint = { enable = true },
       telemetry = {
         enable = false,
       },
