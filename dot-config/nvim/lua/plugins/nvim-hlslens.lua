@@ -1,10 +1,10 @@
 return {
   "kevinhwang91/nvim-hlslens",
-  lazy = false,
-  config = function(opts)
+  event = "CmdlineEnter",
+  keys = { "n", "N", "*", "#", "g*", "g#", { "<leader>cl", desc = "Clear Highlight" } },
+  opts = { calm_down = true },
+  config = function(_, opts)
     local hlslens = require "hlslens"
-
-    opts.calm_down = true
 
     hlslens.setup(opts)
 

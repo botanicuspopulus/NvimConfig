@@ -1,5 +1,4 @@
 -- Interface
-vim.opt.termguicolors = true
 vim.opt.sidescrolloff = 8
 vim.opt.scrolloff = 4
 vim.opt.mouse = "a"
@@ -64,8 +63,6 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.undofile = true
-vim.opt.undolevels = 10000
-vim.opt.undoreload = 10000
 
 -- Completion
 vim.opt.completeopt = { "menu", "menuone", "noselect" }

@@ -88,11 +88,6 @@ autocmd("FileType", {
 })
 
 autocmd("FileType", {
-  pattern = { "python", "rst", "c", "cpp" },
-  command = "setlocal colorcolumn=80",
-})
-
-autocmd("FileType", {
   group = augroup "wrap_spell",
   pattern = { "plaintex", "gitcommit", "markdown", "text" },
   callback = function()
@@ -120,15 +115,5 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
   group = grp,
   callback = function()
     if not ignore_ft[vim.bo.filetype] then vim.wo.relativenumber = false end
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp", "cuda" },
-  callback = function()
-    vim.bo.expandtab = true
-    vim.bo.shiftwidth = 4
-    vim.bo.tabstop = 4
-    vim.bo.softtabstop = 4
   end,
 })
