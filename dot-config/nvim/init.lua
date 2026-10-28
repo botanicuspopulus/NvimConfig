@@ -93,7 +93,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         "LSP: List Workspace Folders",
       },
       { "<leader>lr", vim.lsp.buf.rename, "LSP: Rename" },
-      { "<leader>lf", function() require("conform").format { async = true, lsp_format = "fallback" } end, "LSP: Format Buffer" },
+      {
+        "<leader>lf",
+        function() require("conform").format { async = true, lsp_format = "fallback" } end,
+        "LSP: Format Buffer",
+      },
     }
 
     for _, keybind in ipairs(keys) do
