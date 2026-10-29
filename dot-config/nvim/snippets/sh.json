@@ -1,0 +1,7 @@
+{
+  "Strict mode header": {
+    "prefix": "strict",
+    "body": ["#!/usr/bin/env bash", "set -euo pipefail", "IFS=\\$'\\n\\t'", "", "$0"],
+    "description": "Bash shebang with strict mode"
+  }
+}

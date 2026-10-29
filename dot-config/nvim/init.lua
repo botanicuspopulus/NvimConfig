@@ -122,4 +122,6 @@ vim.lsp.enable {
   "emmet_ls",
   "svelte",
   "marksman",
+  "bashls",
+  "shuck",
 }

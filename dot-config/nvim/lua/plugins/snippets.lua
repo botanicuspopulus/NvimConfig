@@ -29,6 +29,8 @@ return {
       luasnip.filetype_extend("lua", { "luadoc" })
       luasnip.filetype_extend("javascript", { "jsdoc" })
       luasnip.filetype_extend("typescript", { "tsdoc" })
+      luasnip.filetype_extend("bash", { "sh" })
+      luasnip.filetype_extend("zsh", { "sh" })
     end,
   },
 }

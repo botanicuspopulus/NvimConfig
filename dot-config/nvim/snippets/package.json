@@ -1,0 +1,8 @@
+{
+  "name": "user-snippets",
+  "contributes": {
+    "snippets": [
+      { "language": ["sh", "bash"], "path": "./sh.json" }
+    ]
+  }
+}
